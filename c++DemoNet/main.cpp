@@ -11,14 +11,20 @@
  */
 
 #include <iostream>
-
+#include <fstream>
+#include <string>
 using namespace std;
 
 /*
  * 
  */
-int main(int argc, char** argv) {
+int main() {
     
-   cout << "hier ist C++ Demo bitte push it once again !" << endl;
+    std::ofstream out;
+    out.open("test.txt");
+    out << "hello";
+    out.close();
     return 0;
+    
+
 }

@@ -22,9 +22,23 @@ int main() {
     
     std::ofstream out;
     out.open("test.txt");
-    out << "hello";
+    out << "hel,lo,";
     out.close();
-    return 0;
     
-
+    
+    
+     std::ifstream ino("test.txt");
+     
+     char www [256];
+     
+     ino.getline(www,256,',');
+     ino.close();
+    //Ausgabe
+     std::cout << www <<std::endl;
+    
+    
+    
+    
+    
+    return 0;
 }

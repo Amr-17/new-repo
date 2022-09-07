@@ -37,8 +37,5 @@ int main() {
      std::cout << www <<std::endl;
     
     
-    
-    
-    
     return 0;
 }

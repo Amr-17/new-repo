@@ -15,26 +15,23 @@
 #include <string>
 using namespace std;
 
-/*
- * 
- */
+
 int main() {
     
-    std::ofstream out;
+    ofstream out;          /* */
     out.open("test.txt");
     out << "hel,lo,";
     out.close();
     
     
-    
-     std::ifstream ino("test.txt");
+     ifstream ino("test.txt");
      
-     char www [256];
+     char www [1000];
      
-     ino.getline(www,256,',');
+     ino.getline(www,1000,',');
      ino.close();
     //Ausgabe
-     std::cout << www <<std::endl;
+     cout << www <<endl;
     
     
     return 0;

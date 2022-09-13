@@ -18,21 +18,21 @@ using namespace std;
 
 int main() {
     
-    ofstream out;          /* */
-    out.open("test.txt");
-    out << "hel,lo,";
-    out.close();
+    ofstream Dokument;          /* */
+    Dokument.open("test1.txt");
+    Dokument << "hel,lll,lo,";
+    Dokument.close();
     
     
-     ifstream ino("test.txt");
+     ifstream ino("test1.txt");
      
-     char www [1000];
+     char w [256] ;
      
-     ino.getline(www,1000,',');
+     ino.getline(w,256,',');
      ino.close();
     //Ausgabe
-     cout << www <<endl;
-    
+     cout << w <<endl;
+   
     
     return 0;
 }

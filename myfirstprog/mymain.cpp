@@ -17,7 +17,8 @@ using namespace std;
 /*
  * 
  */
-int main(int argc, char** argv) {
+int main() 
+{
     
    cout << "C++ bitte push it once again!" << endl;
     return 0;

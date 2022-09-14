@@ -32,10 +32,20 @@ using namespace std;
 class Kreis
 {
 public:
-    float radius;
-    float flaeche() {
+  float flaeche() {
         return (22/7) * radius * radius;
     }
+   
+    void setRadius(float radius) {
+        this->radius = radius;
+    }
+
+    float getRadius() const {
+        return radius;
+    }
+private:
+      float radius;
+    
 };
 
 
@@ -45,8 +55,8 @@ public:
 int main() {
     Kreis jemand;
     Kreis jan;
-    jemand.radius = 3;
-    jan.radius = 4;
+    jemand.setRadius(3);
+    jan.setRadius(4);
     cout << "Fläche von jemand ist = "<< jemand.flaeche() << endl;
     cout << "Fläche von jan ist = "<< jan.flaeche();
     

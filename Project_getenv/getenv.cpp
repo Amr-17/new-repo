@@ -10,7 +10,7 @@
  * Created on 13 September 2022, 13:20
  */
 
-
+#include <stdlib.h>
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -18,7 +18,7 @@ using namespace std;
 int main()
 {
 	/* Eine liste von möglichen Umgebungvariables*/
-	const char *env_var[2] = {"PUBLIC","HOME"}; /*  Intialiesieren von string mit drei Elementen    */
+	const char *env_var[2] = {"PUBLIC","HOME"}; /*  Intialiesieren von string mit zwei Elementen    */
 	char *env_val[2];
 
 	for(int i=0; i<2; i++)

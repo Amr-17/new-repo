@@ -130,57 +130,60 @@
 #include <stdio.h>
 #include <sstream>
 #include <list>
-
+//
 using namespace std;
 using std::cout;
 using std::endl;
 
 
-void adv_tokenizer(string s, char del)
+void adv_tokenizer(string s, char del) // Funktion zur Dateien Einlesen //
 {
 	stringstream ss(s);
 	string word;
 	while (!ss.eof()) {
-		getline(ss, word, del);
-                if (word != "")
+		getline(ss, word, del); // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
+                if (word != "")// hier um leere zeilen zu entfernen    //
 		{
+                    while(word.find('"') != string::npos)// hier um " zu entfernen    //
+                word.replace(word.find('"'), 1, "\n" );
+                
 			cout << word << endl;
 		}
-		//cout << word << endl;
+		
 	}
 }
-void splitString(string str)
-{
-	string num;
-	for (int n=0; n<str.length(); n++)
-	{
-		if (isdigit(str[n]))
-			num.push_back(str[n]);
-        }}
-void integerherausfiltern(string zeile) {
-    stringstream str;
+//void splitString(string str)  // Funktion zum filtern der Zahlen   //
+//{
+//	string num;
+//	for (int n=0; n<str.length(); n++)
+//	{
+//		if (isdigit(str[n]))
+//			num.push_back(str[n]);
+//        }}
+//void integerherausfiltern(string zeile) // Funktion2 zum filtern der Zahlen   //
+//{
+//    stringstream str;
+//
+//    /* Storing the whole string into string stream */
+//    str << zeile;
+//
+//    /* Running loop till the end of the stream */
+//    string temp;
+//    int found;
+//    while (!str.eof()) {
+//
+//        /* extracting word by word from stream */
+//        str >> temp;
+//
+//        /* Checking the given word is integer or not */
+//        if (stringstream(temp) >> found)
+//            cout << found << " ";
+//
+//        /* To save from space at the end of string */
+//        temp = "";
+//    }
+//}
 
-    /* Storing the whole string into string stream */
-    str << zeile;
-
-    /* Running loop till the end of the stream */
-    string temp;
-    int found;
-    while (!str.eof()) {
-
-        /* extracting word by word from stream */
-        str >> temp;
-
-        /* Checking the given word is integer or not */
-        if (stringstream(temp) >> found)
-            cout << found << " ";
-
-        /* To save from space at the end of string */
-        temp = "";
-    }
-}
-
-// Driver code
 
 int main() {
 
@@ -193,7 +196,9 @@ string zeile;
         getline(datei, zeile,'=');
            //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
                 adv_tokenizer(zeile, ' ');
-        
+//        for (int i = 0; i < 500; i++){
+//             cout << zeile[i] << endl;
+//        }
                 //   integerherausfiltern(zeile);
        
     }

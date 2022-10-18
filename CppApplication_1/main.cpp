@@ -190,7 +190,7 @@ string zeile;
 
         
     for (int i = 0; !datei.eof(); i++) {
-        getline(datei, zeile);
+        getline(datei, zeile,'=');
            //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
                 adv_tokenizer(zeile, ' ');
         

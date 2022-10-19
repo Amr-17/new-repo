@@ -27,38 +27,38 @@ using std::endl;
 int main(int argc, char* argv[]) {
 
 
-    
+
     string ffstr;
     string zeile;
     ifstream datei;
     datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
 
-        
+
     for (int i = 0; !datei.eof(); i++) {
-        getline(datei, zeile,'=');
-           //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
-           
+        getline(datei, zeile, '=');
+        //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
+
         Format Code(zeile, ' ');
         //Code.create(ffstr);
-//        for (int i = 0; i < 500; i++){
-//             cout << zeile[i] << endl;
-//        }
-                //   integerherausfiltern(zeile);
-       
+        //        for (int i = 0; i < 500; i++){
+        //             cout << zeile[i] << endl;
+        //        }
+        //   integerherausfiltern(zeile);
+
     }
     return 0;
 }
 
 
-    //string zeile;
-    //    
-    //    ifstream datei;
-    //    datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-    //for (int i = 0; !datei.eof(); i++) {
-    //        getline(datei, zeile);
-    //        cout << zeile << endl;
+//string zeile;
+//    
+//    ifstream datei;
+//    datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
+//for (int i = 0; !datei.eof(); i++) {
+//        getline(datei, zeile);
+//        cout << zeile << endl;
 
-    // }
+// }
 
 
 

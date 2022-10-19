@@ -24,8 +24,11 @@ using namespace std;
 
 class Format {
 public:
-    Format(string fname);
+    
+    //Format(string fname);
+    Format(string s, char del);
     void create(string fstr);
+   
 private:
     string name;
     list<string> fieldList;

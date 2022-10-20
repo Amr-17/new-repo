@@ -24,11 +24,13 @@ class Format {
 public:
 
     //Format(string fname);
-    Format(string s, char del);
+    Format(const string s, int len);
     void create(string fstr);
-
+    void read(string fstr);
+    void readname(string fstr);
 private:
     string name;
+    string event_id;
     list<string> fieldList;
     list<int> IntList;
 };

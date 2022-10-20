@@ -20,13 +20,12 @@ using namespace std;
 Format::Format(const string s, int len) // Funktion zu Dateien Einlesen //
 {
     readname(s);
+    
     char del =' ';
-    int start = s.find('=',0);
+    int start = s.find('=', 0);
     if (s.length()==0 || s.find('=',0) <= 0 || start <= 0 ) return;
-    
-    //int len = s.length();
-    
     int end = s.length();
+    //int len = s.length();
    //// cout << "start= " << start << " end=" << end << endl;    
    // string ss(s.substr(start, end-start));
     stringstream ss(s.substr(start, end-start));
@@ -39,9 +38,10 @@ Format::Format(const string s, int len) // Funktion zu Dateien Einlesen //
         {
             while (word.find('"') != string::npos)// hier um " zu entfernen    //
                 word.replace(word.find('"'), 1, "\n");
-
+              while (word.find('=') != string::npos)
+                  word.replace(word.find('='), 1, "\n");
             std::pair<string, int> p(word,7);
-             cout << "pair= " << p.first << "," <<p.second << endl;
+            cout << "pair= " << p.first << "," <<p.second << endl;
             //cout << word << endl;
         }
 

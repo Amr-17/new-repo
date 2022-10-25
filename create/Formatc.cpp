@@ -17,32 +17,55 @@
 
 using namespace std;
 
-Format::Format(const string s, int len) // Funktion zu Dateien Einlesen //
+Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
-    readname(s);
-    
-    char del =' ';
+    readname(s); 
+    char del = ' ';
     int start = s.find('=', 0);
     if (s.length()==0 || s.find('=',0) <= 0 || start <= 0 ) return;
     int end = s.length();
     //int len = s.length();
    //// cout << "start= " << start << " end=" << end << endl;    
-   // string ss(s.substr(start, end-start));
+   //string ss(s.substr(start, end-start));
     stringstream ss(s.substr(start, end-start));
     
     ////cout << "ss= " << len << endl;
-    string word;
+    
+    
+   
+   string word;
+   //int i = atoi( word );
+  //int num = stoi(word);
     while (!ss.eof()) {
         getline(ss, word, del); // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
         if (word != "")// hier um leere zeilen zu entfernen    //
         {
-            while (word.find('"') != string::npos)// hier um " zu entfernen    //
-                word.replace(word.find('"'), 1, "\n");
-              while (word.find('=') != string::npos)
-                  word.replace(word.find('='), 1, "\n");
-            std::pair<string, int> p(word,7);
-            cout << "pair= " << p.first << "," <<p.second << endl;
-            //cout << word << endl;
+            
+
+           while (word.find('"') != string::npos)// hier um " zu entfernen    //
+           word.replace(word.find('"'), 1, "");
+             while (word.find('=') != string::npos)
+             word.replace(word.find('='), 1, "");
+          
+           
+//           for(int i = 0; i < word.size(); i++)
+//{
+            // string zu int umwandeln
+//             char num = word[i];
+//                if(num >= '0' && num <= '9')
+//                {
+//                     int nn = num - '0';
+//                   cout << nn;
+//                }
+//             
+//                }
+//           
+           
+           
+         pair<string, int> p(word,99);
+          cout << "pair= " << p.first << "," <<p.second << endl;
+           
+           //cout << word << endl;
         }
 
     }
@@ -79,4 +102,13 @@ void Format::readname(string Eventformat) {
         cout << "Event_name: " + name << endl;
         cout << "Event_nummer: " + event_id << endl;
     }
+}
+void splitString(string str)  // Funktion zum filtern der Zahlen   //
+{
+	string num;
+	for (int n=0; n<str.length(); n++)
+	{
+		if (isdigit(str[n]))
+			num.push_back(str[n]);
+        }
 }

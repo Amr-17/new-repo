@@ -38,8 +38,10 @@ max_best_o_pa 12 max_beh_best 12 min_beh_best 12 ausschuss    12 max_beh_anz  6 
     string zeile;
     ifstream datei;
     datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-    for (int i = 0; !datei.eof(); i++) {
-        getline(datei, zeile,'\n');
+    for (int i = 2; !datei.eof(); i++) 
+    {
+        
+        getline(datei, zeile);
         //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
        Format Code(zeile, zeile.length());
        
@@ -54,7 +56,7 @@ max_best_o_pa 12 max_beh_best 12 min_beh_best 12 ausschuss    12 max_beh_anz  6 
         //        }
         //   integerherausfiltern(zeile);
 
-    }
+        }
     return 0;
 }
 

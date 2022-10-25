@@ -101,10 +101,7 @@ void Format::readname(string Eventformat) {
 }
 void Format::maping(string wort, int numm)  //   //
 {
-	
-	//for (int n=0; n<wort.length(); n++)
-	//{
 		 pair<string, int> p(wort,numm);
            cout << "pair= " << p.first << "," <<p.second << endl;
-        //}
+        
 }

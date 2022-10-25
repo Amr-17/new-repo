@@ -62,7 +62,7 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
                     
                     //cout << word << endl;    //// hier word ist richtig nn ist falsch
                     //cout << nn << endl;
-//        }
+        }
 
     }
 }

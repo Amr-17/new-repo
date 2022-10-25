@@ -19,7 +19,7 @@ using namespace std;
 
 Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
-    readname(s); 
+    //readname(s); 
     char del = ' ';
     int start = s.find('=', 0);
     if (s.length()==0 || s.find('=',0) <= 0 || start <= 0 ) return;
@@ -32,7 +32,7 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
     ////cout << "ss= " << len << endl;
     
     
-   
+   int nn;
    string word;
    //int i = atoi( word );
   //int num = stoi(word);
@@ -40,7 +40,6 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
         getline(ss, word, del); // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
         if (word != "")// hier um leere zeilen zu entfernen    //
         {
-            
 
            while (word.find('"') != string::npos)// hier um " zu entfernen    //
            word.replace(word.find('"'), 1, "");
@@ -48,24 +47,21 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
              word.replace(word.find('='), 1, "");
           
            
-//           for(int i = 0; i < word.size(); i++)
-//{
-            // string zu int umwandeln
-//             char num = word[i];
-//                if(num >= '0' && num <= '9')
-//                {
-//                     int nn = num - '0';
-//                   cout << nn;
-//                }
-//             
-//                }
-//           
-           
-           
-         pair<string, int> p(word,99);
+           for(int i = 0; i < word.size(); i++)
+{
+            //    //   //// string zu int umwandeln
+             char num = word[i];
+                if(num >= '0' && num <= '9')
+                {
+                     int nn = num - '0';
+           //
+                   // cout << nn << end;
+           pair<string, int> p(word,nn);
           cout << "pair= " << p.first << "," <<p.second << endl;
-           
-           //cout << word << endl;
+           }
+           }
+          
+         //  cout << word << endl;
         }
 
     }

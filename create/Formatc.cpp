@@ -20,6 +20,7 @@ using namespace std;
 Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
     //readname(s); 
+   
     char del = ' ';
     int start = s.find('=', 0);
     if (s.length()==0 || s.find('=',0) <= 0 || start <= 0 ) return;
@@ -47,22 +48,21 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
              word.replace(word.find('='), 1, "");
           
            
-           for(int i = 0; i < word.size(); i++)
-{
-            //    //   //// string zu int umwandeln
+           for(int i = 0; i < word.size(); i++)   //    //   // // string zu int Umwandeln
+           {
              char num = word[i];
                 if(num >= '0' && num <= '9')
                 {
                      int nn = num - '0';
-           //
-                   // cout << nn << end;
-           pair<string, int> p(word,nn);
-          cout << "pair= " << p.first << "," <<p.second << endl;
+                   // maping(word,nn);         ////hier wird das für nn richtig aber Word ist falsch und num 
+                   // cout << nn << endl;
+
            }
            }
-          
-         //  cout << word << endl;
-        }
+                    
+                    //cout << word << endl;    //// hier word ist richtig nn ist falsch
+                    //cout << nn << endl;
+//        }
 
     }
 }
@@ -99,12 +99,12 @@ void Format::readname(string Eventformat) {
         cout << "Event_nummer: " + event_id << endl;
     }
 }
-void splitString(string str)  // Funktion zum filtern der Zahlen   //
+void Format::maping(string wort, int numm)  //   //
 {
-	string num;
-	for (int n=0; n<str.length(); n++)
-	{
-		if (isdigit(str[n]))
-			num.push_back(str[n]);
-        }
+	
+	//for (int n=0; n<wort.length(); n++)
+	//{
+		 pair<string, int> p(wort,numm);
+           cout << "pair= " << p.first << "," <<p.second << endl;
+        //}
 }

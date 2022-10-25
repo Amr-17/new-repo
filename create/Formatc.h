@@ -28,7 +28,8 @@ public:
     void create(string fstr);
     void read(string fstr);
     void readname(string fstr);
-    void splitString(string str);
+    void maping(string wort, int numm);
+ 
 private:
     string name;
     string event_id;

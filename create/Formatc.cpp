@@ -20,48 +20,50 @@ using namespace std;
 Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
     //readname(s); 
-   
+
     char del = ' ';
     int start = s.find('=', 0);
-    if (s.length()==0 || s.find('=',0) <= 0 || start <= 0 ) return;
+    if (s.length() == 0 || s.find('=', 0) <= 0 || start <= 0) return;
     int end = s.length();
     //int len = s.length();
-   //// cout << "start= " << start << " end=" << end << endl;    
-   //string ss(s.substr(start, end-start));
-    stringstream ss(s.substr(start, end-start));
-    
+    //// cout << "start= " << start << " end=" << end << endl;    
+    //string ss(s.substr(start, end-start));
+    stringstream ss(s.substr(start, end - start));
+
     ////cout << "ss= " << len << endl;
-    
-    
-   int nn;
-   string word;
-   //int i = atoi( word );
-  //int num = stoi(word);
+
+
+    int nn;
+    string word;
+    //int i = atoi( word );
+    //int num = stoi(word);
     while (!ss.eof()) {
         getline(ss, word, del); // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
-        if (word != "")// hier um leere zeilen zu entfernen    //
+        if (word != "") //  hier um leere zeilen in der Ausgabe zu entfernen    //
         {
 
-           while (word.find('"') != string::npos)// hier um " zu entfernen    //
-           word.replace(word.find('"'), 1, "");
-             while (word.find('=') != string::npos)
-             word.replace(word.find('='), 1, "");
-          
-           
-           for(int i = 0; i < word.size(); i++)   //    //   // // string zu int Umwandeln
-           {
-             char num = word[i];
-                if(num >= '0' && num <= '9')
-                {
-                     int nn = num - '0';
-                   // maping(word,nn);         ////hier wird das für nn richtig aber Word ist falsch und num 
-                   // cout << nn << endl;
+            while (word.find('"') != string::npos)// hier um " zu entfernen    //
+                word.replace(word.find('"'), 1, "");
+            while (word.find('=') != string::npos)
+                word.replace(word.find('='), 1, "");
 
-           }
-           }
-                    
-                    //cout << word << endl;    //// hier word ist richtig nn ist falsch
-                    //cout << nn << endl;
+//            for (int i = 0; i < word.size(); i++) //    //   // // string zu int Umwandeln
+//            {
+//                nn = 0;
+//                char num = word[i];
+//                if (num >= '0' && num <= '9') {
+//                    nn = num - '0';    ////hier wird das für nn richtig aber Word ist falsch 
+//                    //cout << nn;
+//                    //cout << word << endl;
+//                    //maping(word,nn); 
+//
+//                }
+//            }
+              int fieldlen = LiesLaenge(word);
+
+            // cout << word << endl; 
+                    // << " fieldlen=" << fieldlen << endl;    //// hier word ist richtig 
+            //cout << nn << endl;
         }
 
     }
@@ -94,14 +96,46 @@ void Format::readname(string Eventformat) {
         string myname(Eventformat.substr(0, Eventformat.find('=')));
         string myname1(Eventformat.substr(7, 4));
         event_id = myname1;
-        name = myname; 
+        name = myname;
         cout << "Event_name: " + name << endl;
         cout << "Event_nummer: " + event_id << endl;
     }
 }
-void Format::maping(string wort, int numm)  //   //
+
+void Format::maping(string wort, int numm) //   //
 {
-		 pair<string, int> p(wort,numm);
-           cout << "pair= " << p.first << "," <<p.second << endl;
-        
+    pair<string, int> p(wort, numm);
+    cout << "pair= " << p.first << "," << p.second << endl;
+
+}
+
+/*string zu int Umwandeln*/
+
+int Format::LiesLaenge(string wort) {
+   if (wort != "")
+   {
+       int zahl = -1;
+    if(wort.length()==0)
+        return zahl;
+    if(!isdigit(wort.at(0)))
+        return zahl;
+    zahl = 0;
+    for (int i = 0; i < wort.size(); i++) {
+        char num = wort[i];
+        if (num >= '0' && num <= '9') {
+            int nn = num - '0';
+            ////hier wird das für nn richtig aber Word ist falsch 
+            // cout << nn << endl;
+            zahl *=10 + nn;
+            cout << wort << endl;
+                    
+                    //<< " zahl = " << zahl << " " << endl;
+            
+            // maping(word,nn); 
+//        } else {
+//            // keine Zahl mehr
+//            return zahl;
+        }
+    }
+}
 }

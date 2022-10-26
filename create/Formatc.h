@@ -29,7 +29,8 @@ public:
     void read(string fstr);
     void readname(string fstr);
     void maping(string wort, int numm);
- 
+    int LiesLaenge(string wort);
+  
 private:
     string name;
     string event_id;

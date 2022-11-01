@@ -59,8 +59,10 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 //
 //                }
 //            }
-              int fieldlen = LiesLaenge(word);
-
+               int fieldlen = LiesLaenge(word);
+               string liesname = Liesname(word);
+               // maping(liesname, fieldlen);
+                 
             // cout << word << endl; 
                     // << " fieldlen=" << fieldlen << endl;    //// hier word ist richtig 
             //cout << nn << endl;
@@ -124,18 +126,30 @@ int Format::LiesLaenge(string wort) {
         char num = wort[i];
         if (num >= '0' && num <= '9') {
             int nn = num - '0';
-            ////hier wird das für nn richtig aber Word ist falsch 
             // cout << nn << endl;
             zahl *=10 + nn;
-            cout << wort << endl;
-                    
                     //<< " zahl = " << zahl << " " << endl;
-            
             // maping(word,nn); 
 //        } else {
 //            // keine Zahl mehr
 //            return zahl;
         }
+        }
+        cout << " " << wort << endl;
     }
 }
+
+string Format::Liesname(string name) {
+
+
+    int j = 0;
+    for (int i = 0; i < name.size(); i++) {
+        if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z')) {
+            name[j] = name[i];
+            j++;
+        }
+    }
+    cout << name.substr(0, j);
 }
+
+  

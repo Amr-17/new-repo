@@ -19,7 +19,7 @@ using namespace std;
 
 Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
-    //readname(s); 
+    readname(s); 
 
     char del = ' ';
     int start = s.find('=', 0);
@@ -47,27 +47,28 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
             while (word.find('=') != string::npos)
                 word.replace(word.find('='), 1, "");
 
-//            for (int i = 0; i < word.size(); i++) //    //   // // string zu int Umwandeln
-//            {
-//                nn = 0;
-//                char num = word[i];
-//                if (num >= '0' && num <= '9') {
-//                    nn = num - '0';    ////hier wird das für nn richtig aber Word ist falsch 
-//                    //cout << nn;
-//                    //cout << word << endl;
-//                    //maping(word,nn); 
-//
-//                }
-//            }
-               int fieldlen = LiesLaenge(word);
-               string liesname = Liesname(word);
-               // maping(liesname, fieldlen);
-                 
-            // cout << word << endl; 
-                    // << " fieldlen=" << fieldlen << endl;    //// hier word ist richtig 
+            //            for (int i = 0; i < word.size(); i++) //    //   // // string zu int Umwandeln
+            //            {
+            //                nn = 0;
+            //                char num = word[i];
+            //                if (num >= '0' && num <= '9') {
+            //                    nn = num - '0';    ////hier wird das für nn richtig aber Word ist falsch 
+            //                    //cout << nn;
+            //                    //cout << word << endl;
+            //                    //maping(word,nn); 
+            //
+            //                }
+            //            }
+            int fieldlen = LiesLaenge(word);
+                cout << " " << fieldlen << endl;
+            string liesname = Liesname(word);
+            // cout << "Liesname =" << liesname;
+            // maping(liesname, fieldlen);
+
+             //cout << word << endl; 
+            // << " fieldlen=" << fieldlen << endl;  
             //cout << nn << endl;
         }
-
     }
 }
 //Format::Format(string fname):name(fname) 
@@ -111,37 +112,32 @@ void Format::maping(string wort, int numm) //   //
 
 }
 
-/*string zu int Umwandeln*/
-
+/* string zu positiver integer Umwandeln
+ * wenn wort kein Ziffern enthält dann wird -1 geliefert  */
 int Format::LiesLaenge(string wort) {
-   if (wort != "")
-   {
-       int zahl = -1;
-    if(wort.length()==0)
-        return zahl;
-    if(!isdigit(wort.at(0)))
-        return zahl;
-    zahl = 0;
-    for (int i = 0; i < wort.size(); i++) {
-        char num = wort[i];
-        if (num >= '0' && num <= '9') {
-            int nn = num - '0';
-            // cout << nn << endl;
-            zahl *=10 + nn;
-                    //<< " zahl = " << zahl << " " << endl;
-            // maping(word,nn); 
-//        } else {
-//            // keine Zahl mehr
-//            return zahl;
+    int zahl = -1;
+    if (wort != "") {
+        if (wort.length() == 0)
+            return zahl;
+        if (!isdigit(wort.at(0)))
+            return zahl;
+        zahl = 0;
+        for (int i = 0; i < wort.size(); i++) {
+            char num = wort[i];
+            if (num >= '0' && num <= '9') {
+                int nn = num - '0';
+                // cout << nn << endl;
+                zahl = zahl * 10 + nn;
+             
+                //<< " zahl = " << zahl << " " << endl;
+            }
         }
-        }
-        cout << " " << wort << endl;
+        // cout << " " << wort << endl;
     }
+    return zahl;
 }
 
 string Format::Liesname(string name) {
-
-
     int j = 0;
     for (int i = 0; i < name.size(); i++) {
         if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z')) {
@@ -152,4 +148,4 @@ string Format::Liesname(string name) {
     cout << name.substr(0, j);
 }
 
-  
+

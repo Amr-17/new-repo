@@ -13,6 +13,7 @@
 #ifndef _FORMAT_HEADER
 #define _FORMAT_HEADER
 
+#include <map>
 #include <iostream>
 #include <list>
 #include <iosfwd>
@@ -24,6 +25,7 @@ class Format {
 public:
 
     //Format(string fname);
+    char del = ' ';
     Format(const string s, int len);
     void create(string fstr);
     void read(string fstr);
@@ -31,6 +33,7 @@ public:
     void maping(string wort, int numm);
     int LiesLaenge(string wort);
     string Liesname(string name);
+    void maping1(string Feld, int Laenge);
 
 private:
     string name;

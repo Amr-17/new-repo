@@ -13,15 +13,13 @@
 #include <stdio.h>
 #include <sstream>
 #include <list>
-
+#include <map>
 
 using namespace std;
 
 Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
-    readname(s); 
-
-    char del = ' ';
+    //readname(s); 
     int start = s.find('=', 0);
     if (s.length() == 0 || s.find('=', 0) <= 0 || start <= 0) return;
     int end = s.length();
@@ -32,42 +30,28 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 
     ////cout << "ss= " << len << endl;
 
-
-    int nn;
     string word;
-    //int i = atoi( word );
-    //int num = stoi(word);
     while (!ss.eof()) {
-        getline(ss, word, del); // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
+        getline(ss, word, del);
+        // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
         if (word != "") //  hier um leere zeilen in der Ausgabe zu entfernen    //
         {
-
             while (word.find('"') != string::npos)// hier um " zu entfernen    //
                 word.replace(word.find('"'), 1, "");
             while (word.find('=') != string::npos)
                 word.replace(word.find('='), 1, "");
 
-            //            for (int i = 0; i < word.size(); i++) //    //   // // string zu int Umwandeln
-            //            {
-            //                nn = 0;
-            //                char num = word[i];
-            //                if (num >= '0' && num <= '9') {
-            //                    nn = num - '0';    ////hier wird das für nn richtig aber Word ist falsch 
-            //                    //cout << nn;
-            //                    //cout << word << endl;
-            //                    //maping(word,nn); 
-            //
-            //                }
-            //            }
-            int fieldlen = LiesLaenge(word);
-                cout << " " << fieldlen << endl;
-            string liesname = Liesname(word);
-            // cout << "Liesname =" << liesname;
-            // maping(liesname, fieldlen);
 
-             //cout << word << endl; 
-            // << " fieldlen=" << fieldlen << endl;  
-            //cout << nn << endl;
+            int fieldlen = LiesLaenge(word);
+            string liesname = Liesname(word);
+                if (liesname != "")
+                cout << "Liesname = " << liesname << endl;
+                if (fieldlen > -1) {
+                cout << "Lieslaenge = " << fieldlen << endl;
+                                   }
+            //cout << word << endl; 
+            //maping1(liesname, fieldlen);
+            //maping(liesname, fieldlen);
         }
     }
 }
@@ -104,16 +88,25 @@ void Format::readname(string Eventformat) {
         cout << "Event_nummer: " + event_id << endl;
     }
 }
-
-void Format::maping(string wort, int numm) //   //
+/*   Mape mittels pair*/
+void Format::maping(string wort, int numm)
 {
     pair<string, int> p(wort, numm);
     cout << "pair= " << p.first << "," << p.second << endl;
 
 }
+/* Mape mittels map */
+void Format::maping1(string Feld, int Laenge) //   //
+{
+    map<string, int> mp;
+    mp.insert(pair<string, int>(Feld, Laenge));
+    for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
+        cout << "Feldname, Feldlaenge= " << itr->first << "," << itr->second << endl;
+    }
+}
 
 /* string zu positiver integer Umwandeln
- * wenn wort kein Ziffern enthält dann wird -1 geliefert  */
+ * wenn wort kein Ziffern enthält dann wird -1 geliefert */
 int Format::LiesLaenge(string wort) {
     int zahl = -1;
     if (wort != "") {
@@ -128,7 +121,7 @@ int Format::LiesLaenge(string wort) {
                 int nn = num - '0';
                 // cout << nn << endl;
                 zahl = zahl * 10 + nn;
-             
+
                 //<< " zahl = " << zahl << " " << endl;
             }
         }
@@ -137,15 +130,26 @@ int Format::LiesLaenge(string wort) {
     return zahl;
 }
 
+/*liest die Feldname und liefert den zurück
+ * Feldname könnte Ziffern enthalten dies wurde hier doch berücksichtigt und richtig erkannt 
+ */
 string Format::Liesname(string name) {
-    int j = 0;
-    for (int i = 0; i < name.size(); i++) {
-        if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z')) {
-            name[j] = name[i];
-            j++;
+    string c;
+    string feldname;
+    bool weitermachen = true;
+    if (name != ""){
+    for (int i = 0; i < name.size() && weitermachen; i++) {
+        //if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z'))
+        if (name[i] != del && !(name [i] >= '0' && name [i] <= '9')) {
+            c = name[i];
+            feldname.append(c);
         }
+        // else weitermachen = false ;
     }
-    cout << name.substr(0, j);
+    // cout << name.substr(0, j);
+    
+    return feldname;
+    }
 }
 
 

@@ -42,12 +42,13 @@ max_best_o_pa 12 max_beh_best 12 min_beh_best 12 ausschuss    12 max_beh_anz  6 
     {
         getline(datei, zeile);
         
+        
         //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
        Format Code(zeile, zeile.length());
        
-       map<string,Format> allFormats;
-//       allFormats.insert(Code.getId(), Code);
-//        Code.readname(example);
+     //  map<string,Format> allFormats;
+     //       allFormats.insert(Code.getId(), Code);
+     //        Code.readname(example);
         //Format Code(zeile, ' ');
         
         //Code.create(ffstr);
@@ -56,7 +57,7 @@ max_best_o_pa 12 max_beh_best 12 min_beh_best 12 ausschuss    12 max_beh_anz  6 
         //        }
         //   integerherausfiltern(zeile);
 
-        }
+       }
     return 0;
 }
 

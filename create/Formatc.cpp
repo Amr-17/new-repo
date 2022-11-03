@@ -113,7 +113,7 @@ void Format::maping(string wort, int numm) {
 }
 
 /* Mape mittels map */
-void Format::maping1(string Feld, int Laenge) //   //
+void Format::maping1(string Feld, int Laenge) //  ed //
 {
     map<string, int> mp;
     mp.insert(pair<string, int>(Feld, Laenge));

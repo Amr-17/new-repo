@@ -19,7 +19,7 @@ using namespace std;
 
 Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
 {
-    //readname(s); 
+    readname(s);
     int start = s.find('=', 0);
     if (s.length() == 0 || s.find('=', 0) <= 0 || start <= 0) return;
     int end = s.length();
@@ -31,6 +31,9 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
     ////cout << "ss= " << len << endl;
 
     string word;
+    int fieldlen = 0;
+    string liesname = "";
+    bool readname = true;
     while (!ss.eof()) {
         getline(ss, word, del);
         // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
@@ -41,16 +44,29 @@ Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
             while (word.find('=') != string::npos)
                 word.replace(word.find('='), 1, "");
 
-
-            int fieldlen = LiesLaenge(word);
-            string liesname = Liesname(word);
-                if (liesname != "")
-                cout << "Liesname = " << liesname << endl;
-                if (fieldlen > -1) {
-                cout << "Lieslaenge = " << fieldlen << endl;
-                                   }
             //cout << word << endl; 
-            //maping1(liesname, fieldlen);
+
+
+
+
+            if (readname) {
+                liesname = Liesname(word);
+                //if (liesname != "")
+                //cout << "Liesname = " << liesname << endl;
+                readname = false;
+            } else {
+                fieldlen = LiesLaenge(word);
+                if (fieldlen > -1) {
+                    //cout << "Lieslaenge = " << fieldlen << endl;
+                    maping1(liesname, fieldlen);
+                } else {
+                    cout << " Formatfehler: kein Ziffer in Word gefunden: "
+                            << word << " in diesem: " << this->name << endl;
+                }
+                readname = true;
+            }
+            //cout << word << endl; 
+
             //maping(liesname, fieldlen);
         }
     }
@@ -84,17 +100,18 @@ void Format::readname(string Eventformat) {
         string myname1(Eventformat.substr(7, 4));
         event_id = myname1;
         name = myname;
-        cout << "Event_name: " + name << endl;
-        cout << "Event_nummer: " + event_id << endl;
+        //cout << "Event_name: " + name << endl;
+        //cout << "Event_nummer: " + event_id << endl;
     }
 }
+
 /*   Mape mittels pair*/
-void Format::maping(string wort, int numm)
-{
+void Format::maping(string wort, int numm) {
     pair<string, int> p(wort, numm);
     cout << "pair= " << p.first << "," << p.second << endl;
 
 }
+
 /* Mape mittels map */
 void Format::maping1(string Feld, int Laenge) //   //
 {
@@ -106,27 +123,25 @@ void Format::maping1(string Feld, int Laenge) //   //
 }
 
 /* string zu positiver integer Umwandeln
- * wenn wort kein Ziffern enthält dann wird -1 geliefert */
+ * wenn das erste Zeichen kein Ziffern enthält dann wird -1 geliefert */
 int Format::LiesLaenge(string wort) {
     int zahl = -1;
-    if (wort != "") {
-        if (wort.length() == 0)
-            return zahl;
-        if (!isdigit(wort.at(0)))
-            return zahl;
-        zahl = 0;
-        for (int i = 0; i < wort.size(); i++) {
-            char num = wort[i];
-            if (num >= '0' && num <= '9') {
-                int nn = num - '0';
-                // cout << nn << endl;
-                zahl = zahl * 10 + nn;
+    if (wort.length() == 0)
+        return zahl;
+    if (!isdigit(wort.at(0)))
+        return zahl;
+    zahl = 0;
+    for (int i = 0; i < wort.size(); i++) {
+        char num = wort[i];
+        if (num >= '0' && num <= '9') {
+            int nn = num - '0';
+            // cout << nn << endl;
+            zahl = zahl * 10 + nn;
 
-                //<< " zahl = " << zahl << " " << endl;
-            }
+            //<< " zahl = " << zahl << " " << endl;
         }
-        // cout << " " << wort << endl;
     }
+    // cout << " " << wort << endl;
     return zahl;
 }
 
@@ -137,19 +152,18 @@ string Format::Liesname(string name) {
     string c;
     string feldname;
     bool weitermachen = true;
-    if (name != ""){
-    for (int i = 0; i < name.size() && weitermachen; i++) {
-        //if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z'))
-        if (name[i] != del && !(name [i] >= '0' && name [i] <= '9')) {
-            c = name[i];
-            feldname.append(c);
+    if (name != "") {
+        for (int i = 0; i < name.size() && weitermachen; i++) {
+            //if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z'))
+            //if (name[i] != del && !(name [i] >= '0' && name [i] <= '9'))
+            if (name[i] != del) {
+                c = name[i];
+                feldname.append(c);
+            }
+            // else weitermachen = false ;
         }
-        // else weitermachen = false ;
-    }
-    // cout << name.substr(0, j);
-    
-    return feldname;
+        // cout << name.substr(0, j);
+
+        return feldname;
     }
 }
-
-

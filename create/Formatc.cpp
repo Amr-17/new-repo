@@ -16,84 +16,15 @@
 #include <map>
 
 using namespace std;
-
-Format::Format(string s, int len) // Funktion zu Dateien Einlesen //
+ /* Klasse zum Dateien Einlesen und in einem gezielten Format wiedergibt */
+Format::Format(string s, int len)
 {
-    readname(s);
-    int start = s.find('=', 0);
-    if (s.length() == 0 || s.find('=', 0) <= 0 || start <= 0) return;
-    int end = s.length();
-    //int len = s.length();
-    //// cout << "start= " << start << " end=" << end << endl;    
-    //string ss(s.substr(start, end-start));
-    stringstream ss(s.substr(start, end - start));
-
-    ////cout << "ss= " << len << endl;
-
-    string word;
-    int fieldlen = 0;
-    string liesname = "";
-    bool readname = true;
-    while (!ss.eof()) {
-        getline(ss, word, del);
-        // jede Zeile wird damit eingelesen und bei einem leerzeichen eine zeile darunter kommen    //
-        if (word != "") //  hier um leere zeilen in der Ausgabe zu entfernen    //
-        {
-            while (word.find('"') != string::npos)// hier um " zu entfernen    //
-                word.replace(word.find('"'), 1, "");
-            while (word.find('=') != string::npos)
-                word.replace(word.find('='), 1, "");
-
-            //cout << word << endl; 
-
-
-
-
-            if (readname) {
-                liesname = Liesname(word);
-                //if (liesname != "")
-                //cout << "Liesname = " << liesname << endl;
-                readname = false;
-            } else {
-                fieldlen = LiesLaenge(word);
-                if (fieldlen > -1) {
-                    //cout << "Lieslaenge = " << fieldlen << endl;
-                    maping1(liesname, fieldlen);
-                } else {
-                    cout << " Formatfehler: kein Ziffer in Word gefunden: "
-                            << word << " in diesem: " << this->name << endl;
-                }
-                readname = true;
-            }
-            //cout << word << endl; 
-
-            //maping(liesname, fieldlen);
-        }
-    }
+    readname(s);    /* aufruf des Funktions, die Name des Format wiedergibt */
+    Ergebnis(s); /* aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
+    
 }
-//Format::Format(string fname):name(fname) 
-//{
 
-//   for(int i=0;!datei.eof();i++)
-//{
-//    getline(datei, fname);
-//         cout << "Format Konstructor: " + fname << endl;
-//      }
-//}
-
-//void Format::crate(string fstr) {
-//    ifstream datei;
-//    datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-//
-//    for (int i = 0; !datei.eof(); i++) {
-//        getline(datei, fstr);
-//        if (fstr[0] == 'F') {
-//            cout << endl << "create: " + fstr.substr(0, fstr.find('=')) << endl;
-//            // cout << "create: " + fstr << endl;
-//        }
-//    }
-//}
-
+/* Die Funktions für Wiedergabe von der Name des Format */
 void Format::readname(string Eventformat) {
     if (Eventformat[0] == 'F') {
         string myname(Eventformat.substr(0, Eventformat.find('=')));
@@ -105,21 +36,25 @@ void Format::readname(string Eventformat) {
     }
 }
 
-/*   Mape mittels pair*/
+/* Mape mittels pair */
 void Format::maping(string wort, int numm) {
     pair<string, int> p(wort, numm);
-    cout << "pair= " << p.first << "," << p.second << endl;
-
+    //cout << "pair= " << p.first << "," << p.second << endl;
 }
 
 /* Mape mittels map */
-void Format::maping1(string Feld, int Laenge) //  ed //
-{
-    map<string, int> mp;
+inline void Format::maping1(string Feld, int Laenge) {
     mp.insert(pair<string, int>(Feld, Laenge));
+}
+/* show Funktion, zu der Ausgabe */
+void Format::show() {
+    
+    cout << "Event_name: " + name << endl;
+    cout << "Event_nummer: " + event_id << endl;
     for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-        cout << "Feldname, Feldlaenge= " << itr->first << "," << itr->second << endl;
-    }
+    cout << "Feldname, Feldlaenge= " << itr->first << "," << itr->second << endl;
+    //cout << "pair = Feldname, Feldlaenge= " << p.first << "," << p.second << endl;
+   }
 }
 
 /* string zu positiver integer Umwandeln
@@ -166,4 +101,66 @@ string Format::Liesname(string name) {
 
         return feldname;
     }
+}
+
+
+//void Format::Lieswechselnd(string wechselword) {
+//    int fieldlen = 0;
+//    string liesname = "";
+//    bool readname = true;
+//if (readname) {
+//    void maping1(string Feld, int Laenge);
+//                liesname = Liesname(wechselword);
+//                //if (liesname != "")
+//                //cout << "Liesname = " << liesname << endl;
+//                readname = false;
+//            } else {
+//                fieldlen = LiesLaenge(wechselword);
+//                if (fieldlen > -1) {
+//                    //cout << "Lieslaenge = " << fieldlen << endl;
+//                    maping1(liesname, fieldlen);
+//                } else {
+//                    cout << " Formatfehler: kein Ziffer in Word gefunden: "
+//                            << wechselword << " in diesem: " << this->name << endl;
+//                }
+//                readname = true;
+//            }
+//}
+
+    void Format::Ergebnis(string word) 
+    {
+    int start = word.find('=', 0)+2;
+    if (word.length() == 0 || word.find('=', 0) <= 0 || start <= 0) return;
+    int end = word.length();
+    stringstream ss(word.substr(start, end - start));
+    //string word;
+    int fieldlen = 0;
+    string liesname = "";
+    bool readname = true;
+    while (!ss.eof()) {
+        getline(ss, word, del);/* Text wird damit Zeilenweise eingelesen und bei einem leerzeichen eine zeile darunter kommen   */
+        if (word != "")       /*   leere Zeilen die durch das Leerzeichen im Text ignorieren     */
+      {
+            //cout << word << endl; 
+            /* Wechselnd die Zeilen lesen mit derm Namenfeld und Feldlänge für eine richtige Ausgabe */
+            if (readname) {
+                liesname = Liesname(word);
+                //if (liesname != "")
+                //cout << "Liesname = " << liesname << endl;
+                readname = false;
+            } else {
+                fieldlen = LiesLaenge(word);
+                if (fieldlen > -1) {
+                    //cout << "Lieslaenge = " << fieldlen << endl;
+                    maping1(liesname, fieldlen);   /* Mabingsfunktion aufrufen */
+                } else {
+                    cout << " Formatfehler: kein Ziffer in Word gefunden: "
+                            << word << " in diesem: " << this->name << endl;
+                }
+                readname = true;
+            }
+            
+        }
+    }
+  
 }

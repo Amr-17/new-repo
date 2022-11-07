@@ -26,16 +26,21 @@ public:
 
     //Format(string fname);
     char del = ' ';
+    void Ergebnis(string word);
     Format(const string s, int len);
-    void create(string fstr);
     void read(string fstr);
     void readname(string fstr);
     void maping(string wort, int numm);
     int LiesLaenge(string wort);
     string Liesname(string name);
     void maping1(string Feld, int Laenge);
+    void show();
+    void Lieswechselnd(string wechsel);
+    void Zeichenfiltern(string wort);
 
 private:
+    pair<string, int> p;
+    map<string, int> mp;
     string name;
     string event_id;
     list<string> fieldList;

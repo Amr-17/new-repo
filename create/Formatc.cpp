@@ -2,8 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.cc to edit this template
  */
-
-
 #include "Formatc.h"
 #include <fstream>
 #include <string>
@@ -16,12 +14,11 @@
 #include <map>
 
 using namespace std;
- /* Klasse zum Dateien Einlesen und in einem gezielten Format wiedergibt */
+ /* Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
 Format::Format(string s, int len)
 {
-    readname(s);    /* aufruf des Funktions, die Name des Format wiedergibt */
-    Ergebnis(s); /* aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
-    
+    readname(s);    /* Aufruf des Funktions, die Name des Format wiedergibt */
+    Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
 }
 
 /* Die Funktions für Wiedergabe von der Name des Format */
@@ -45,14 +42,18 @@ void Format::maping(string wort, int numm) {
 /* Mape mittels map */
 inline void Format::maping1(string Feld, int Laenge) {
     mp.insert(pair<string, int>(Feld, Laenge));
+   // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
+   // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
+   //}
 }
-/* show Funktion, zu der Ausgabe */
+
+/* show Funktion zu der Ausgabe */
 void Format::show() {
     
     cout << "Event_name: " + name << endl;
     cout << "Event_nummer: " + event_id << endl;
     for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-    cout << "Feldname, Feldlaenge= " << itr->first << "," << itr->second << endl;
+    cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
     //cout << "pair = Feldname, Feldlaenge= " << p.first << "," << p.second << endl;
    }
 }
@@ -95,10 +96,7 @@ string Format::Liesname(string name) {
                 c = name[i];
                 feldname.append(c);
             }
-            // else weitermachen = false ;
         }
-        // cout << name.substr(0, j);
-
         return feldname;
     }
 }
@@ -109,7 +107,6 @@ string Format::Liesname(string name) {
 //    string liesname = "";
 //    bool readname = true;
 //if (readname) {
-//    void maping1(string Feld, int Laenge);
 //                liesname = Liesname(wechselword);
 //                //if (liesname != "")
 //                //cout << "Liesname = " << liesname << endl;
@@ -142,17 +139,16 @@ string Format::Liesname(string name) {
         if (word != "")       /*   leere Zeilen die durch das Leerzeichen im Text ignorieren     */
       {
             //cout << word << endl; 
-            /* Wechselnd die Zeilen lesen mit derm Namenfeld und Feldlänge für eine richtige Ausgabe */
+            /* Die Zeilen Wechselnd mit dem Namenfeld und Feldlänge für eine richtige Ausgabe lesen*/
             if (readname) {
                 liesname = Liesname(word);
-                //if (liesname != "")
                 //cout << "Liesname = " << liesname << endl;
                 readname = false;
             } else {
                 fieldlen = LiesLaenge(word);
                 if (fieldlen > -1) {
                     //cout << "Lieslaenge = " << fieldlen << endl;
-                    maping1(liesname, fieldlen);   /* Mabingsfunktion aufrufen */
+                    maping1(liesname, fieldlen);   /* Mabingsfunktion aufrufen  */
                 } else {
                     cout << " Formatfehler: kein Ziffer in Word gefunden: "
                             << word << " in diesem: " << this->name << endl;
@@ -164,3 +160,4 @@ string Format::Liesname(string name) {
     }
   
 }
+    

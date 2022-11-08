@@ -34,38 +34,11 @@ int main(int argc, char* argv[]) {
     for (int i = 0; !datei.eof(); i++) 
     {
         getline(datei, zeile);
-        
-        
-        //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
        Format Code(zeile, zeile.length());
        Code.show();
-               
-       
-     //  map<string,Format> allFormats;
-     //       allFormats.insert(Code.getId(), Code);
-     //        Code.readname(example);
-        //Format Code(zeile, ' ');
-        
-        //Code.create(ffstr);
-        //        for (int i = 0; i < 500; i++){
-        //             cout << zeile[i] << endl;
-        //        }
-        //   integerherausfiltern(zeile);
-
        }
     return 0;
 }
-
-
-//string zeile;
-//    
-//    ifstream datei;
-//    datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-//for (int i = 0; !datei.eof(); i++) {
-//        getline(datei, zeile);
-//        cout << zeile << endl;
-
-// }
 
 
 

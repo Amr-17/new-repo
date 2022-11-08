@@ -24,7 +24,6 @@ using namespace std;
 class Format {
 public:
 
-    //Format(string fname);
     char del = ' ';
     void Ergebnis(string word);
     Format(const string s, int len);
@@ -35,12 +34,11 @@ public:
     string Liesname(string name);
     void maping1(string Feld, int Laenge);
     void show();
-    void Lieswechselnd(string wechsel);
-    void Zeichenfiltern(string wort);
+   // void Lieswechselnd(string wechsel);
 
 private:
     pair<string, int> p;
-    map<string, int> mp;
+    multimap<string, int> mp;
     string name;
     string event_id;
     list<string> fieldList;

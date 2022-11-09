@@ -12,7 +12,7 @@
 
 #ifndef _FORMAT_HEADER
 #define _FORMAT_HEADER
-
+#include <vector>
 #include <map>
 #include <iostream>
 #include <list>
@@ -23,10 +23,9 @@ using namespace std;
 
 class Format {
 public:
-
+    typedef pair <string, int> T_pair;
     char del = ' ';
-    void Ergebnis(string word);
-    Format(const string s, int len);
+    Format(const string s);
     void read(string fstr);
     void readname(string fstr);
     void maping(string wort, int numm);
@@ -34,15 +33,21 @@ public:
     string Liesname(string name);
     void maping1(string Feld, int Laenge);
     void show();
+    void show2();
    // void Lieswechselnd(string wechsel);
 
 private:
+    
+    size_t start;
+    size_t end;
+    vector<T_pair> Feldliste;
+    int split(string const &str);
+    void Ergebnis(string word);
     pair<string, int> p;
     multimap<string, int> mp;
     string name;
     string event_id;
-    list<string> fieldList;
-    list<int> IntList;
+   
 };
 
 #endif

@@ -14,11 +14,14 @@
 #include <map>
 
 using namespace std;
- /* Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
-Format::Format(string s, int len)
-{
-    readname(s);    /* Aufruf des Funktions, die Name des Format wiedergibt */
-    Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
+
+/* Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
+Format::Format(const string s) {
+     start = 0;
+     end = 0;
+    readname(s); /* Aufruf des Funktions, die Name des Format wiedergibt */
+    //Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
+    split(s);
 }
 
 /* Die Funktions für Wiedergabe von der Name des Format */
@@ -28,53 +31,86 @@ void Format::readname(string Eventformat) {
         string myname1(Eventformat.substr(7, 4));
         event_id = myname1;
         name = myname;
-        //cout << "Event_name: " + name << endl;
-        //cout << "Event_nummer: " + event_id << endl;
+        start = Eventformat.find('"')+1;
     }
 }
 
 /* Mape mittels pair */
 void Format::maping(string wort, int numm) {
-    pair<string, int> p(wort, numm);
+    T_pair p(wort, numm);
     //cout << "pair= " << p.first << "," << p.second << endl;
 }
 
 /* Mape mittels map */
 inline void Format::maping1(string Feld, int Laenge) {
-    mp.insert(pair<string, int>(Feld, Laenge));
-   // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-   // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
-   //}
+    mp.insert(T_pair(Feld, Laenge));
+    // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
+    // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
+    //}
+}
+
+int Format::split(string const &str) {
+    string token;
+    //cout << "end = " << end << endl << "start = " << start << endl << str << endl << "del =x" << del << "x" << endl;
+   // while ((start2 = str.find(del, start)) != string::npos) {
+        //end = max(str.length(), str.find(del, start2));
+        end = str.find(del, start);
+        token = str.substr(start, end-start);
+    //}
+    cout << "end = " << end << endl << "start = " << start << endl << token << endl;
+    end++;
+    int len = 0;
+    string lenghthstr = str.substr(end, str.size()- end);
+    cout << "lengthstr = " << lenghthstr << endl;
+    len = LiesLaenge(lenghthstr);
+    cout << "len = " << len << endl;
+    T_pair pp (token, len);
+    Feldliste.push_back(pp);
+    start = end;
 }
 
 /* show Funktion zu der Ausgabe */
 void Format::show() {
-    
+
     cout << "Event_name: " + name << endl;
     cout << "Event_nummer: " + event_id << endl;
     for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-    cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
-    //cout << "pair = Feldname, Feldlaenge= " << p.first << "," << p.second << endl;
-   }
+        cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
+        //cout << "pair = Feldname, Feldlaenge= " << p.first << "," << p.second << endl;
+    }
 }
+
+void Format::show2() {
+
+    cout << "Event_name: " + name << endl;
+    cout << "Event_nummer: " + event_id << endl;
+    for (auto itr = Feldliste.begin(); itr != Feldliste.end(); ++itr) {
+        T_pair pp = *itr;
+        cout << "Feldname, Feldlaenge = " << pp.first << "," << pp.second << endl;
+    }
+}
+
 
 /* string zu positiver integer Umwandeln
  * wenn das erste Zeichen kein Ziffern enthält dann wird -1 geliefert */
 int Format::LiesLaenge(string wort) {
+    
     int zahl = -1;
     if (wort.length() == 0)
         return zahl;
     if (!isdigit(wort.at(0)))
         return zahl;
     zahl = 0;
-    for (int i = 0; i < wort.size(); i++) {
-        char num = wort[i];
+    char num = wort[0];
+    for (int i = 0; i < wort.size() && num != del; i++) {
+        num = wort[i];
         if (num >= '0' && num <= '9') {
             int nn = num - '0';
             // cout << nn << endl;
             zahl = zahl * 10 + nn;
-
-            //<< " zahl = " << zahl << " " << endl;
+            end++;
+        
+            cout << " zahl = " << zahl << " " << endl;
         }
     }
     // cout << " " << wort << endl;
@@ -124,9 +160,8 @@ string Format::Liesname(string name) {
 //            }
 //}
 
-    void Format::Ergebnis(string word) 
-    {
-    int start = word.find('=', 0)+2;
+void Format::Ergebnis(string word) {
+    int start = word.find('=', 0) + 2;
     if (word.length() == 0 || word.find('=', 0) <= 0 || start <= 0) return;
     int end = word.length();
     stringstream ss(word.substr(start, end - start));
@@ -135,9 +170,8 @@ string Format::Liesname(string name) {
     string liesname = "";
     bool readname = true;
     while (!ss.eof()) {
-        getline(ss, word, del);/* Text wird damit Zeilenweise eingelesen und bei einem leerzeichen eine zeile darunter kommen   */
-        if (word != "")       /*   leere Zeilen die durch das Leerzeichen im Text ignorieren     */
-      {
+        getline(ss, word, del); /* Text wird damit Zeilenweise eingelesen und bei einem leerzeichen eine zeile darunter kommen   */
+        if (word != "") /*   leere Zeilen die durch das Leerzeichen im Text ignorieren     */ {
             //cout << word << endl; 
             /* Die Zeilen Wechselnd mit dem Namenfeld und Feldlänge für eine richtige Ausgabe lesen*/
             if (readname) {
@@ -148,16 +182,16 @@ string Format::Liesname(string name) {
                 fieldlen = LiesLaenge(word);
                 if (fieldlen > -1) {
                     //cout << "Lieslaenge = " << fieldlen << endl;
-                    maping1(liesname, fieldlen);   /* Mabingsfunktion aufrufen  */
+                    maping1(liesname, fieldlen); /* Mabingsfunktion aufrufen  */
                 } else {
                     cout << " Formatfehler: kein Ziffer in Word gefunden: "
                             << word << " in diesem: " << this->name << endl;
                 }
                 readname = true;
             }
-            
+
         }
     }
-  
+
 }
-    
+

@@ -27,15 +27,12 @@ using std::endl;
 
 int main(int argc, char* argv[]) {
 
-    string ffstr;
     string zeile;
     ifstream datei;
     datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
     for (int i = 0; !datei.eof(); i++) 
     {
         getline(datei, zeile);
-        
-        
         //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
        Format Code(zeile);
        Code.show2();

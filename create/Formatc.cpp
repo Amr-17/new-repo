@@ -17,11 +17,14 @@ using namespace std;
 
 /* Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
 Format::Format(const string s) {
-     start = 0;
-     end = 0;
+    start = 0;
+    end = 0;
     readname(s); /* Aufruf des Funktions, die Name des Format wiedergibt */
     //Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
-    split(s);
+    int splitresult = 0;
+    while (end < s.length() && splitresult >= 0) {
+       splitresult = split(s);
+    }
 }
 
 /* Die Funktions für Wiedergabe von der Name des Format */
@@ -31,7 +34,7 @@ void Format::readname(string Eventformat) {
         string myname1(Eventformat.substr(7, 4));
         event_id = myname1;
         name = myname;
-        start = Eventformat.find('"')+1;
+        start = Eventformat.find('"') + 1;
     }
 }
 
@@ -50,23 +53,35 @@ inline void Format::maping1(string Feld, int Laenge) {
 }
 
 int Format::split(string const &str) {
+    if (start >= str.length() || str[start] == '"') {
+        return -1;
+    }
     string token;
     //cout << "end = " << end << endl << "start = " << start << endl << str << endl << "del =x" << del << "x" << endl;
-   // while ((start2 = str.find(del, start)) != string::npos) {
-        //end = max(str.length(), str.find(del, start2));
-        end = str.find(del, start);
-        token = str.substr(start, end-start);
+    // while ((start2 = str.find(del, start)) != string::npos) {
+    //end = max(str.length(), str.find(del, start2));
+    end = str.find(del, start);
+    token = str.substr(start, end - start);
     //}
-    cout << "end = " << end << endl << "start = " << start << endl << token << endl;
-    end++;
+    //cout << "end = " << end << endl << "start = " << start << endl << token << endl;
+    // Vor der Länge könnten mehrere leerzeichen stehen //
+    end = str.find_first_not_of(del, end);
+    //cout << "end = " << end << endl;
     int len = 0;
-    string lenghthstr = str.substr(end, str.size()- end);
-    cout << "lengthstr = " << lenghthstr << endl;
+    string lenghthstr = str.substr(end, str.size() - end);
+    //cout << "lengthstr = " << lenghthstr << endl;
     len = LiesLaenge(lenghthstr);
+    if (len < 0){
+        return -2;
+    }
+    end = str.find_first_not_of(del, end);
     cout << "len = " << len << endl;
-    T_pair pp (token, len);
+    //cout << "end = " << end << endl;
+    T_pair pp(token, len);
+    cout << "Feldname, Feldlaenge = " << pp.first << "," << pp.second << endl;
     Feldliste.push_back(pp);
     start = end;
+    return 0;
 }
 
 /* show Funktion zu der Ausgabe */
@@ -90,11 +105,10 @@ void Format::show2() {
     }
 }
 
-
 /* string zu positiver integer Umwandeln
  * wenn das erste Zeichen kein Ziffern enthält dann wird -1 geliefert */
 int Format::LiesLaenge(string wort) {
-    
+
     int zahl = -1;
     if (wort.length() == 0)
         return zahl;
@@ -109,8 +123,7 @@ int Format::LiesLaenge(string wort) {
             // cout << nn << endl;
             zahl = zahl * 10 + nn;
             end++;
-        
-            cout << " zahl = " << zahl << " " << endl;
+            //cout << " zahl = " << zahl << " " << endl;
         }
     }
     // cout << " " << wort << endl;

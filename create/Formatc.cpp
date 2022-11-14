@@ -21,9 +21,9 @@ Format::Format(const string s) {
     end = 0;
     readname(s); /* Aufruf des Funktions, die Name des Format wiedergibt */
     //Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
-    int splitresult = 0;  /* Aufruf des Funktions Split unter bestimmten Bedingungen */
+    int splitresult = 0; /* Aufruf des Funktions Split unter bestimmten Bedingungen */
     while (end < s.length() && splitresult >= 0) {
-       splitresult = split(s);
+        splitresult = split(s);
     }
 }
 
@@ -51,6 +51,7 @@ inline void Format::maping1(string Feld, int Laenge) {
     // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
     //}
 }
+
 /* Split Funktion, die ein Feldlänge und Feldname liest und in einem Vektor "Feldliste" speichert, 
  * so dass die Reihenfolge vorhanden bleibt */
 int Format::split(string const &str) {
@@ -67,7 +68,7 @@ int Format::split(string const &str) {
     string lenghthstr = str.substr(end, str.size() - end);
     //cout << "lengthstr = " << lenghthstr << endl;
     len = LiesLaenge(lenghthstr);
-    if (len < 0){
+    if (len < 0) {
         return -2;
     }
     end = str.find_first_not_of(del, end);
@@ -90,8 +91,8 @@ void Format::show() {
     }
 }
 
+/* show Funktion zu der Ausgabe anhand der T_Pair "typdef" */
 void Format::show2() {
-
     cout << "Event_name: " + name << endl;
     cout << "Event_nummer: " + event_id << endl;
     for (auto itr = Feldliste.begin(); itr != Feldliste.end(); ++itr) {

@@ -21,7 +21,7 @@ Format::Format(const string s) {
     end = 0;
     readname(s); /* Aufruf des Funktions, die Name des Format wiedergibt */
     //Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
-    int splitresult = 0;
+    int splitresult = 0;  /* Aufruf des Funktions Split unter bestimmten Bedingungen */
     while (end < s.length() && splitresult >= 0) {
        splitresult = split(s);
     }
@@ -38,7 +38,7 @@ void Format::readname(string Eventformat) {
     }
 }
 
-/* Mape mittels pair */
+/* Mape mittels pair anhand typdef */
 void Format::maping(string wort, int numm) {
     T_pair p(wort, numm);
     //cout << "pair= " << p.first << "," << p.second << endl;
@@ -51,19 +51,15 @@ inline void Format::maping1(string Feld, int Laenge) {
     // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
     //}
 }
-
+/* Split Funktion, die ein Feldlänge und Feldname liest und in einem Vektor "Feldliste" speichert, 
+ * so dass die Reihenfolge vorhanden bleibt */
 int Format::split(string const &str) {
     if (start >= str.length() || str[start] == '"') {
         return -1;
     }
     string token;
-    //cout << "end = " << end << endl << "start = " << start << endl << str << endl << "del =x" << del << "x" << endl;
-    // while ((start2 = str.find(del, start)) != string::npos) {
-    //end = max(str.length(), str.find(del, start2));
     end = str.find(del, start);
     token = str.substr(start, end - start);
-    //}
-    //cout << "end = " << end << endl << "start = " << start << endl << token << endl;
     // Vor der Länge könnten mehrere leerzeichen stehen //
     end = str.find_first_not_of(del, end);
     //cout << "end = " << end << endl;
@@ -75,10 +71,9 @@ int Format::split(string const &str) {
         return -2;
     }
     end = str.find_first_not_of(del, end);
-    cout << "len = " << len << endl;
+    //cout << "len = " << len << endl;
     //cout << "end = " << end << endl;
     T_pair pp(token, len);
-    cout << "Feldname, Feldlaenge = " << pp.first << "," << pp.second << endl;
     Feldliste.push_back(pp);
     start = end;
     return 0;

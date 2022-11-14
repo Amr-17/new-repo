@@ -20,7 +20,6 @@
 #include <string>
 
 using namespace std;
-
 class Format {
 public:
     typedef pair <string, int> T_pair;
@@ -49,6 +48,18 @@ private:
     string event_id;
    
 };
+class alle_formate : public Format, private Format {
+public:
+  alle_formate(const string st);
+  void aa(string ID, string forma);
+  typedef pair <string, string> alle_pair;
+
+private:
+    
+   
+};
+
+
 
 #endif
 

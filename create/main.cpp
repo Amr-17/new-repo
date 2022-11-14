@@ -33,8 +33,9 @@ int main(int argc, char* argv[]) {
     for (int i = 0; !datei.eof(); i++) 
     {
         getline(datei, zeile);
-        //cout << endl << zeile.substr(0, zeile.find('=')) << endl;
-       Format Code(zeile);
+       //Format Code(zeile);
+       //Code.show2();
+       alle_formate Code(zeile);
        Code.show2();
                
        

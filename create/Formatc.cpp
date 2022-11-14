@@ -15,7 +15,7 @@
 
 using namespace std;
 
-/* Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
+/* Konstruktor der Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
 Format::Format(const string s) {
     start = 0;
     end = 0;
@@ -26,7 +26,9 @@ Format::Format(const string s) {
         splitresult = split(s);
     }
 }
-
+alle_formate::alle_formate(const string st) {
+   aa(name,splitresult);
+}
 /* Die Funktions für Wiedergabe von der Name des Format */
 void Format::readname(string Eventformat) {
     if (Eventformat[0] == 'F') {
@@ -42,6 +44,11 @@ void Format::readname(string Eventformat) {
 void Format::maping(string wort, int numm) {
     T_pair p(wort, numm);
     //cout << "pair= " << p.first << "," << p.second << endl;
+}
+/* Mape mittels pair anhand typdef für alle Formate */
+void alle_formate::aa(string ID, string forma) {
+    alle_pair pair Allepair(ID, forma);
+    //cout << "allepair= " << pair Allepair.first << "," << pair Allepair.second << endl;
 }
 
 /* Mape mittels map */
@@ -145,7 +152,6 @@ string Format::Liesname(string name) {
         return feldname;
     }
 }
-
 
 //void Format::Lieswechselnd(string wechselword) {
 //    int fieldlen = 0;

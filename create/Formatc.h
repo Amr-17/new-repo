@@ -36,7 +36,6 @@ public:
    // void Lieswechselnd(string wechsel);
 
 private:
-    
     size_t start;
     size_t end;
     vector<T_pair> Feldliste;
@@ -48,7 +47,8 @@ private:
     string event_id;
    
 };
-class alle_formate : public Format, private Format {
+
+class alle_formate : public Format {
 public:
   alle_formate(const string st);
   void aa(string ID, string forma);

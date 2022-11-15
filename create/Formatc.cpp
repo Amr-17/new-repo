@@ -47,7 +47,7 @@ void Format::maping(string wort, int numm) {
 }
 /* Mape mittels pair anhand typdef für alle Formate */
 void alle_formate::aa(string ID, string forma) {
-    alle_pair pair Allepair(ID, forma);
+    alle_pair Allepair(ID, forma);
     //cout << "allepair= " << pair Allepair.first << "," << pair Allepair.second << endl;
 }
 

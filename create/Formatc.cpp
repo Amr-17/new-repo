@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.cc to edit this template
  */
 #include "Formatc.h"
+#include "alleformate.h"
 #include <fstream>
 #include <string>
 #include <math.h>
@@ -15,7 +16,7 @@
 
 using namespace std;
 
-/* Konstruktor der Klasse zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
+/* Konstruktor der Klasse Format zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
 Format::Format(const string s) {
     start = 0;
     end = 0;
@@ -26,9 +27,14 @@ Format::Format(const string s) {
         splitresult = split(s);
     }
 }
-alle_formate::alle_formate(const string st) {
-   aa(name,splitresult);
+/* Konstruktor der Klasse alle_formate zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
+alle_formate::alle_formate(const string st){
 }
+/* Die Funktions für Wiedergabe von allen Foramten */
+void aa(string ID, string alle_events)
+{
+}
+
 /* Die Funktions für Wiedergabe von der Name des Format */
 void Format::readname(string Eventformat) {
     if (Eventformat[0] == 'F') {
@@ -44,11 +50,6 @@ void Format::readname(string Eventformat) {
 void Format::maping(string wort, int numm) {
     T_pair p(wort, numm);
     //cout << "pair= " << p.first << "," << p.second << endl;
-}
-/* Mape mittels pair anhand typdef für alle Formate */
-void alle_formate::aa(string ID, string forma) {
-    alle_pair Allepair(ID, forma);
-    //cout << "allepair= " << pair Allepair.first << "," << pair Allepair.second << endl;
 }
 
 /* Mape mittels map */

@@ -45,21 +45,9 @@ private:
     multimap<string, int> mp;
     string name;
     string event_id;
+
    
 };
-
-class alle_formate : public Format {
-public:
-  alle_formate(const string st);
-  void aa(string ID, string forma);
-  typedef pair <string, string> alle_pair;
-
-private:
-    
-   
-};
-
-
 
 #endif
 

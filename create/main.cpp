@@ -9,7 +9,7 @@
  *
  * Created on 10 October 2022, 13:55
  */
-
+#include "alleformate.h"
 #include "Formatc.h"
 #include <fstream>
 #include <string>
@@ -33,10 +33,10 @@ int main(int argc, char* argv[]) {
     for (int i = 0; !datei.eof(); i++) 
     {
         getline(datei, zeile);
-       //Format Code(zeile);
-       //Code.show2();
-       alle_formate Code(zeile);
+       Format Code(zeile);
        Code.show2();
+//       alle_formate Code(zeile);
+//       Code.show2();
                
        
      //  map<string,Format> allFormats;

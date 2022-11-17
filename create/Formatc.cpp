@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.cc to edit this template
  */
 #include "Formatc.h"
-#include "alleformate.h"
 #include <fstream>
 #include <string>
 #include <math.h>
@@ -26,13 +25,6 @@ Format::Format(const string s) {
     while (end < s.length() && splitresult >= 0) {
         splitresult = split(s);
     }
-}
-/* Konstruktor der Klasse alle_formate zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
-alle_formate::alle_formate(const string st){
-}
-/* Die Funktions für Wiedergabe von allen Foramten */
-void aa(string ID, string alle_events)
-{
 }
 
 /* Die Funktions für Wiedergabe von der Name des Format */

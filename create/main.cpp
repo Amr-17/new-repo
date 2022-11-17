@@ -26,15 +26,20 @@ using std::cout;
 using std::endl;
 
 int main(int argc, char* argv[]) {
-
+    
+    alle_formate alle;
     string zeile;
     ifstream datei;
     datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
+    
+    
     for (int i = 0; !datei.eof(); i++) 
     {
         getline(datei, zeile);
        Format Code(zeile);
-       Code.show2();
+       alle.add(Code);
+       //Code.show2();
+       
 //       alle_formate Code(zeile);
 //       Code.show2();
                

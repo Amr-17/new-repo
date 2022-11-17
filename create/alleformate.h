@@ -21,17 +21,24 @@
 #include <string>
 using namespace std;
 
-
-class alle_formate
-{ 
+class alle_formate {
 public:
-  alle_formate(const string st);
-  void aa(string ID, string alle_events);
-  typedef pair <string, string> alle_pair;
-  
+    
+    alle_formate(const string st);
+    typedef pair <string, Format> alle_pair;
+    void add(Format my_form);
 
 private:
-    
+    map<string, Format> mpp;
+
+    void inline Format get(string ID) {
+        return mpp.at(ID);
+    }
+
+    void inline add(Format my_form) {
+        mpp.insert(my_form.getID(), my_form);
+    }
+
 };
 
 #endif /* ALLEFORMATE_H */

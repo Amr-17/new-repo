@@ -33,6 +33,7 @@ public:
     void maping1(string Feld, int Laenge);
     void show();
     void show2();
+    string getID();
    // void Lieswechselnd(string wechsel);
 
 private:
@@ -46,7 +47,9 @@ private:
     string name;
     string event_id;
 
-   
+   inline string getID(){
+       return this->event_id;
+   }
 };
 
 #endif

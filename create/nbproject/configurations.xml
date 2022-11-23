@@ -11,6 +11,7 @@
                    displayName="Resource Files"
                    projectFiles="true">
       <itemPath>Formatc.cpp</itemPath>
+      <itemPath>alleformate.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -46,6 +47,8 @@
       </item>
       <item path="Formatc.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="alleformate.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="alleformate.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -75,6 +78,8 @@
       <item path="Formatc.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Formatc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="alleformate.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="alleformate.h" ex="false" tool="3" flavor2="0">
       </item>

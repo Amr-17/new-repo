@@ -27,6 +27,11 @@ Format::Format(const string s) {
     }
 }
 
+  string Format::getID() {
+        return this->event_id;
+    }
+    
+
 /* Die Funktions für Wiedergabe von der Name des Format */
 void Format::readname(string Eventformat) {
     if (Eventformat[0] == 'F') {
@@ -145,28 +150,6 @@ string Format::Liesname(string name) {
         return feldname;
     }
 }
-
-//void Format::Lieswechselnd(string wechselword) {
-//    int fieldlen = 0;
-//    string liesname = "";
-//    bool readname = true;
-//if (readname) {
-//                liesname = Liesname(wechselword);
-//                //if (liesname != "")
-//                //cout << "Liesname = " << liesname << endl;
-//                readname = false;
-//            } else {
-//                fieldlen = LiesLaenge(wechselword);
-//                if (fieldlen > -1) {
-//                    //cout << "Lieslaenge = " << fieldlen << endl;
-//                    maping1(liesname, fieldlen);
-//                } else {
-//                    cout << " Formatfehler: kein Ziffer in Word gefunden: "
-//                            << wechselword << " in diesem: " << this->name << endl;
-//                }
-//                readname = true;
-//            }
-//}
 
 void Format::Ergebnis(string word) {
     int start = word.find('=', 0) + 2;

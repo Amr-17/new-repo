@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
         getline(datei, zeile);
        Format Code(zeile);
        alle.add(Code);
-       //Code.show2();
+       Code.show2();
        
 //       alle_formate Code(zeile);
 //       Code.show2();

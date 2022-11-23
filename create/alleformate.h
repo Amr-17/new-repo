@@ -7,11 +7,12 @@
  * File:   alleformate.h
  * Author: aghanoum
  *
- * Created on 15 November 2022, 22:05
+ * Created on 22 November 2022, 00:00
  */
 
 #ifndef ALLEFORMATE_H
 #define ALLEFORMATE_H
+
 #include "Formatc.h"
 #include <vector>
 #include <map>
@@ -23,23 +24,18 @@ using namespace std;
 
 class alle_formate {
 public:
-    
-    alle_formate(const string st);
+    alle_formate();
     typedef pair <string, Format> alle_pair;
     void add(Format my_form);
 
+    inline Format get(string ID) {
+        return mpp.at(ID);
+    }
 private:
     map<string, Format> mpp;
 
-    void inline Format get(string ID) {
-        return mpp.at(ID);
-    }
-
-    void inline add(Format my_form) {
-        mpp.insert(my_form.getID(), my_form);
-    }
+    
 
 };
-
 #endif /* ALLEFORMATE_H */
 

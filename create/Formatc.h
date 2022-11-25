@@ -35,6 +35,7 @@ public:
     void show();
     void show2();
     string getID();
+    string name;
 
 private:
     size_t start;
@@ -44,8 +45,9 @@ private:
     void Ergebnis(string word);
     pair<string, int> p;
     multimap<string, int> mp;
-    string name;
+    //string name;
     string event_id;
+    
 
 
 };

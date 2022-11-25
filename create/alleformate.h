@@ -24,6 +24,7 @@ using namespace std;
 
 class alle_formate {
 public:
+    
     alle_formate();
     typedef pair <string, Format> alle_pair;
     void add(Format my_form);
@@ -33,7 +34,7 @@ public:
     }
 private:
     map<string, Format> mpp;
-
+    
     
 
 };

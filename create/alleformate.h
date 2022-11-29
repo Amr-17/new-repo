@@ -13,6 +13,7 @@
 #ifndef ALLEFORMATE_H
 #define ALLEFORMATE_H
 
+#include "analyze.h"
 #include "Formatc.h"
 #include <vector>
 #include <map>

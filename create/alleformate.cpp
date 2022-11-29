@@ -4,7 +4,7 @@
  */
 
 
-
+#include "analyze.h"
 #include "alleformate.h"
 #include "Formatc.h"
 #include <fstream>

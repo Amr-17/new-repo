@@ -29,36 +29,39 @@ int main(int argc, char* argv[]) {
     string zeile1;
     ifstream datei1;
     datei1.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungent.txt");
-      ///////////
+    ///////////
     alle_formate alle;
-        string zeile;
-        ifstream datei;
-        datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-       
-        for (int i = 0; !datei.eof(); i++) 
-        {
-           getline(datei, zeile);
-           Format Code(zeile);
-           alle.add(Code);
-           //Code.show2();
-                 }
-        string id_eingabe ("1718");
-        //if (name == id_eingabe)
-       { cout << "ID nicht vorhanden" << endl;
-       alle.get(id_eingabe).show2();
+    string zeile;
+    ifstream datei;
+    datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
 
-    if (datei1.is_open())
-	{
-    for (int i = 0; !datei1.eof(); i++) {
-        getline(datei1, zeile1);
-
-        analyze Code(zeile1, zeile1.length());
-        }
+    for (int i = 0; !datei.eof(); i++) {
+        getline(datei, zeile);
+        Format Code(zeile);
+        alle.add(Code);
+        //Code.show2();
     }
-        else
-	{
-		cout << "Datei kann nicht geöffnet werden" << endl;
-	}
-        }
-    return 0;
+
+    string id_eingabe("1101");
+    try {
+        
+        Format result(alle.get(id_eingabe));
+        result.show2();
+    }catch(out_of_range&)
+            {
+        cout << "ID nicht vorhanden" << endl;
+        return -3;
+    }
+  // alle.get(id_eingabe).show2();
+
+//    if (datei1.is_open()) {
+//        for (int i = 0; !datei1.eof(); i++) {
+//            getline(datei1, zeile1);
+//
+//            analyze Code(zeile1, zeile1.length());
+//        }
+//    } else {
+//        cout << "Datei kann nicht geöffnet werden" << endl;
+//    }
+return 0;
 }

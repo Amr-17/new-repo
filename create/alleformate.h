@@ -27,8 +27,8 @@ class alle_formate {
 public:
     
     alle_formate();
-    typedef pair <string, Format> alle_pair;
-    void add(Format my_form);
+    //typedef pair <string, Format> alle_pair;
+    void add(Format& my_form);
 
     inline Format get(string ID) {
         return mpp.at(ID);

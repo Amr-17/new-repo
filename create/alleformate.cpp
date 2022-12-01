@@ -23,12 +23,10 @@
 alle_formate::alle_formate() {
     
 }
-
-
-  void alle_formate::add(Format my_form) {
+  void alle_formate::add(Format& my_form) {
       string my_id = my_form.getID();
-       alle_pair pa(my_id, my_form);
-        mpp.insert(pa);
+      // alle_pair pa(my_id, my_form);
+        mpp.insert(make_pair(my_id,my_form));
     }
 
  

@@ -20,16 +20,26 @@
 #include <map>
 #include <iosfwd>
 
-alle_formate::alle_formate() {
-    
+/*  Die Klasse alle_formate dient für das Hinzufügen alle Formate von den allen Events */
+
+alle_formate::alle_formate() { 
 }
+/* add-Funktion, die für die Setzung von den Strings(my_id) und die Formate(my_form) in Map dient */
   void alle_formate::add(Format& my_form) {
       string my_id = my_form.getID();
       // alle_pair pa(my_id, my_form);
         mpp.insert(make_pair(my_id,my_form));
     }
 
- 
+ /* show Funktion zu der Ausgabe der Event_name und (Feldname, Feldlaenge) anhand der T_Pair "typdef" */
+void alle_formate::show_alle() {
+    cout << "Event_name: " + name << endl;
+    cout << "Event_nummer: " + event_id << endl;
+    for (auto itr = Feldliste.begin(); itr != Feldliste.end(); ++itr) {
+        T_pair pp = *itr;
+        cout << "Feldname, Feldlaenge = " << pp.first << "," << pp.second << endl;
+    }
+}
 
 
  

@@ -22,6 +22,7 @@
 
 using namespace std;
 
+/*  Diese Klasse dient dazu, dass die Formate und die Events bestimmt werden, die aus einer Datei eingelesen wird.*/
 class Format {
 public:
     typedef pair <string, int> T_pair;
@@ -36,17 +37,18 @@ public:
     void show();
     void show2();
     string getID();
-
+    
 private:
     size_t start;
     size_t end;
+    string name;
+    string event_id;
     vector<T_pair> Feldliste;
     int split(string const &str);
     void Ergebnis(string word);
     pair<string, int> p;
     multimap<string, int> mp;
-    string name;
-    string event_id;
+    
     
 
 

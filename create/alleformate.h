@@ -22,20 +22,24 @@
 #include <iosfwd>
 #include <string>
 using namespace std;
-
+/*  Die Klasse alle_formate dient für das Hinzufügen alle Formate von den allen Events */
 class alle_formate {
 public:
     
     alle_formate();
     //typedef pair <string, Format> alle_pair;
+    typedef pair <string, int> T_pair;
     void add(Format& my_form);
 
     inline Format get(string ID) {
         return mpp.at(ID);
     }
+    void show_alle();
 private:
     map<string, Format> mpp;
-    
+    string name;
+    string event_id;
+    vector<T_pair> Feldliste;
     
 
 };

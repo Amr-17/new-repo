@@ -19,7 +19,12 @@
 #include <map>
 #include <iosfwd>
 
-analyze::analyze(const string Meldung, int len) // Konstuktor um Meldung aus einer Datei einzulesen //
+analyze::analyze() // Konstuktor der Kalsse alle_formate //
+{
+}
+
+/*Funktion für das Dateieinlesen */
+void analyze::einlesen(const string Meldung, int len)
 {
     int start = Meldung.find('A',0);
     if (Meldung.length()==0 || Meldung.find('=',0) <= 0 || start <= 0 ) return;
@@ -29,10 +34,10 @@ analyze::analyze(const string Meldung, int len) // Konstuktor um Meldung aus ein
     while (!ss.eof()) {
         getline(ss, ME);
         cout << ME << endl;
-        
     }
     
 }
+
 
 //void analyze::readmeldung(string Eventmeldung) {
 //    if (Eventmeldung[0] == 'A') {

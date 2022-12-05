@@ -2,6 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.cc to edit this template
  */
+
+/*  Diese Klasse dient dazu, dass die Formate und die Evente bestimmt werden , die aus einer Datei eingelesen wird.*/
+
 #include "Formatc.h"
 #include <fstream>
 #include <string>

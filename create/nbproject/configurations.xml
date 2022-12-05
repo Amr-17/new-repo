@@ -13,11 +13,11 @@
                    projectFiles="true">
       <itemPath>Formatc.cpp</itemPath>
       <itemPath>alleformate.cpp</itemPath>
+      <itemPath>analyze.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>analyze.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"

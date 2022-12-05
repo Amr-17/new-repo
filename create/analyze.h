@@ -27,9 +27,9 @@ using namespace std;
 class analyze {
 
 public:   
-analyze(const string Meldung, int len);
+analyze();
 void readmeldung(string meld);
-
+void einlesen(const string Meldung, int len); 
 private:
 };
 

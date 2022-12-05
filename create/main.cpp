@@ -10,6 +10,7 @@
  * Created on 10 October 2022, 13:55
  */
 #include "alleformate.h"
+#include "analyze.h"
 #include "Formatc.h"
 #include <fstream>
 #include <string>
@@ -28,8 +29,10 @@ using std::endl;
 int main(int argc, char* argv[]) {
     string zeile1;
     ifstream datei1;
-    datei1.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungent.txt");
+    analyze newcode;
+    datei1.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungen.txt");
     ///////////
+    
     alle_formate alle;
     string zeile;
     ifstream datei;
@@ -41,27 +44,27 @@ int main(int argc, char* argv[]) {
         alle.add(Code);
         //Code.show2();
     }
-
-    string id_eingabe("1101");
-    try {
-        
-        Format result(alle.get(id_eingabe));
-        result.show2();
-    }catch(out_of_range&)
-            {
-        cout << "ID nicht vorhanden" << endl;
-        return -3;
-    }
+//
+    //    string id_eingabe("1128");
+    //    try {
+    //        
+    //        Format result(alle.get(id_eingabe));
+    //        result.show2();
+    //    }catch(out_of_range&)
+    //            {
+    //        cout << "ID nicht vorhanden" << endl;
+    //        return -3;
+    //    }
   // alle.get(id_eingabe).show2();
 
-//    if (datei1.is_open()) {
-//        for (int i = 0; !datei1.eof(); i++) {
-//            getline(datei1, zeile1);
-//
-//            analyze Code(zeile1, zeile1.length());
-//        }
-//    } else {
-//        cout << "Datei kann nicht geöffnet werden" << endl;
-//    }
+    if (datei1.is_open()) {
+        for (int i = 0; !datei1.eof(); i++) {
+            getline(datei1, zeile1);
+            
+            newcode.einlesen(zeile1, zeile1.length());
+        }
+    } else {
+        cout << "Datei kann nicht geöffnet werden" << endl;
+    }
 return 0;
 }

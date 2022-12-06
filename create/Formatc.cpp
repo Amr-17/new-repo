@@ -30,6 +30,7 @@ Format::Format(const string s) {
     }
 }
 
+/* Die Funktions für Wiedergabe von der Event-ID*/
   string Format::getID() {
         return this->event_id;
     }
@@ -46,14 +47,8 @@ void Format::readname(string Eventformat) {
     }
 }
 
-/* Mape mittels pair anhand typdef */
-void Format::maping(string wort, int numm) {
-    T_pair p(wort, numm);
-    //cout << "pair= " << p.first << "," << p.second << endl;
-}
-
 /* Mape mittels map */
-inline void Format::maping1(string Feld, int Laenge) {
+inline void Format::maping(string Feld, int Laenge) {
     mp.insert(T_pair(Feld, Laenge));
     // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
     // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
@@ -88,19 +83,8 @@ int Format::split(string const &str) {
     return 0;
 }
 
-/* show Funktion zu der Ausgabe */
-void Format::show() {
-
-    cout << "Event_name: " + name << endl;
-    cout << "Event_nummer: " + event_id << endl;
-    for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-        cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
-        //cout << "pair = Feldname, Feldlaenge= " << p.first << "," << p.second << endl;
-    }
-}
-
 /* show Funktion zu der Ausgabe anhand der T_Pair "typdef" */
-void Format::show2() {
+void Format::show() {
     cout << "Event_name: " + name << endl;
     cout << "Event_nummer: " + event_id << endl;
     for (auto itr = Feldliste.begin(); itr != Feldliste.end(); ++itr) {
@@ -153,39 +137,3 @@ string Format::Liesname(string name) {
         return feldname;
     }
 }
-
-void Format::Ergebnis(string word) {
-    int start = word.find('=', 0) + 2;
-    if (word.length() == 0 || word.find('=', 0) <= 0 || start <= 0) return;
-    int end = word.length();
-    stringstream ss(word.substr(start, end - start));
-    //string word;
-    int fieldlen = 0;
-    string liesname = "";
-    bool readname = true;
-    while (!ss.eof()) {
-        getline(ss, word, del); /* Text wird damit Zeilenweise eingelesen und bei einem leerzeichen eine zeile darunter kommen   */
-        if (word != "") /*   leere Zeilen die durch das Leerzeichen im Text ignorieren     */ {
-            //cout << word << endl; 
-            /* Die Zeilen Wechselnd mit dem Namenfeld und Feldlänge für eine richtige Ausgabe lesen*/
-            if (readname) {
-                liesname = Liesname(word);
-                //cout << "Liesname = " << liesname << endl;
-                readname = false;
-            } else {
-                fieldlen = LiesLaenge(word);
-                if (fieldlen > -1) {
-                    //cout << "Lieslaenge = " << fieldlen << endl;
-                    maping1(liesname, fieldlen); /* Mabingsfunktion aufrufen  */
-                } else {
-                    cout << " Formatfehler: kein Ziffer in Word gefunden: "
-                            << word << " in diesem: " << this->name << endl;
-                }
-                readname = true;
-            }
-
-        }
-    }
-
-}
-

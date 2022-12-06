@@ -30,12 +30,10 @@ public:
     Format(const string s);
     void read(string fstr);
     void readname(string fstr);
-    void maping(string wort, int numm);
     int LiesLaenge(string wort);
     string Liesname(string name);
-    void maping1(string Feld, int Laenge);
+    void maping(string Feld, int Laenge);
     void show();
-    void show2();
     string getID();
     
 private:
@@ -45,8 +43,6 @@ private:
     string event_id;
     vector<T_pair> Feldliste;
     int split(string const &str);
-    void Ergebnis(string word);
-    pair<string, int> p;
     multimap<string, int> mp;
     
     

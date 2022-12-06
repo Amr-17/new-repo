@@ -26,7 +26,7 @@ analyze::analyze() // Konstuktor der Kalsse alle_formate //
 /*Funktion für das Dateieinlesen */
 void analyze::einlesen(const string Meldung, int len)
 {
-    int start = Meldung.find('A',0);
+    int start = 1;
     if (Meldung.length()==0 || Meldung.find('=',0) <= 0 || start <= 0 ) return;
     int end = Meldung.length()-1;
     stringstream ss(Meldung.substr(start, end-start));

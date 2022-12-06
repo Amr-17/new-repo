@@ -37,30 +37,27 @@ int main(int argc, char* argv[]) {
     string zeile;
     ifstream datei;
     datei.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-
     for (int i = 0; !datei.eof(); i++) {
         getline(datei, zeile);
         Format Code(zeile);
         alle.add(Code);
-        //Code.show2();
+        //Code.show();
     }
+
+//    string id_eingabe("1128");
+//    try {
 //
-    //    string id_eingabe("1128");
-    //    try {
-    //        
-    //        Format result(alle.get(id_eingabe));
-    //        result.show2();
-    //    }catch(out_of_range&)
-    //            {
-    //        cout << "ID nicht vorhanden" << endl;
-    //        return -3;
-    //    }
-  // alle.get(id_eingabe).show2();
+//        Format result(alle.get(id_eingabe));
+//        result.show();
+//    } catch (out_of_range&) {
+//        cout << "ID nicht vorhanden" << endl;
+//        return -3;
+//    }
+//    alle.get(id_eingabe).show();
 
     if (datei1.is_open()) {
         for (int i = 0; !datei1.eof(); i++) {
             getline(datei1, zeile1);
-            
             newcode.einlesen(zeile1, zeile1.length());
         }
     } else {

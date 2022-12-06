@@ -22,7 +22,8 @@
 
 /*  Die Klasse alle_formate dient für das Hinzufügen alle Formate von den allen Events */
 
-alle_formate::alle_formate() { 
+alle_formate::alle_formate() {
+    
 }
 /* add-Funktion, die für die Setzung von den Strings(my_id) und die Formate(my_form) in Map dient */
   void alle_formate::add(Format& my_form) {

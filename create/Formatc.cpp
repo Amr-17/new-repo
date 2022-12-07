@@ -20,8 +20,10 @@ using namespace std;
 
 /* Konstruktor der Klasse Format zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
 Format::Format(const string s) {
+    empty = make_pair("",0);
     start = 0;
     end = 0;
+    position = 0;
     readname(s); /* Aufruf des Funktions, die Name des Format wiedergibt */
     //Ergebnis(s); /* Aufruf des Funktions, die Feldname und Feldlänge wiedergibt */
     int splitresult = 0; /* Aufruf des Funktions Split unter bestimmten Bedingungen */
@@ -46,14 +48,19 @@ void Format::readname(string Eventformat) {
         start = Eventformat.find('"') + 1;
     }
 }
-
-/* Mape mittels map */
-inline void Format::maping(string Feld, int Laenge) {
-    mp.insert(T_pair(Feld, Laenge));
-    // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-    // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
-    //}
+Format::T_pair Format::getnext()
+{
+    if (position > Feldliste.size())
+        return empty;
+    return Feldliste[position++];
 }
+/* Mape mittels map */
+//inline void Format::maping(string Feld, int Laenge) {
+//    mp.insert(T_pair(Feld, Laenge));
+//    // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
+//    // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
+//    //}
+//}
 
 /* Split Funktion, die ein Feldlänge und Feldname liest und in einem Vektor "Feldliste" speichert, 
  * so dass die Reihenfolge vorhanden bleibt */

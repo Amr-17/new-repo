@@ -1,8 +1,8 @@
-build/Debug/MinGW-Windows/main.o: main.cpp alleformate.h analyze.h \
- Formatc.h
+build/Debug/MinGW-Windows/main.o: main.cpp alleformate.h Formatc.h \
+ analyze.h
 
 alleformate.h:
 
-analyze.h:
-
 Formatc.h:
+
+analyze.h:

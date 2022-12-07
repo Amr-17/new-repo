@@ -19,15 +19,29 @@
 #include <map>
 #include <iosfwd>
 
-analyze::analyze() // Konstuktor der Kalsse alle_formate //
+analyze::analyze(const alleformate& formateS) // Konstuktor der Kalsse alle_formate //
 {
+    Sammlung = formateS;
 }
 
-/*Funktion für das Dateieinlesen */
-void analyze::einlesen(const string Meldung, int len)
+///*Funktion für das Dateieinlesen */
+//void analyze::einlesen(const string Meldung, int len)
+//{
+//    int start = 1;
+//    if (Meldung.length()==0 || Meldung.find('=',0) <= 0 || start <= 0 ) return;
+//    int end = Meldung.length()-1;
+//    stringstream ss(Meldung.substr(start, end-start));
+//    string ME;
+//    while (!ss.eof()) {
+//        getline(ss, ME);
+//        cout << ME << endl;
+//    }
+//    
+//}
+int analyze::analysiere(const string& Meldung)
 {
     int start = 1;
-    if (Meldung.length()==0 || Meldung.find('=',0) <= 0 || start <= 0 ) return;
+    if (Meldung.length()==0 || Meldung.find('=',0) <= 0 || start <= 0 ) return -5;
     int end = Meldung.length()-1;
     stringstream ss(Meldung.substr(start, end-start));
     string ME;
@@ -35,7 +49,34 @@ void analyze::einlesen(const string Meldung, int len)
         getline(ss, ME);
         cout << ME << endl;
     }
+    string id_eingabe = ME.substr(0,4);
+    int pos = 0;
+    string value;
+    try {
+        string fieldname;
+        int fieldleng;
     
+            Format result(Sammlung.get(id_eingabe));
+            Format::T_pair field = result.getnext();
+          while (field != result.empty && pos < ME.length()) {
+              fieldname= field.first;
+              fieldleng =field.second;
+              value = ME.substr(pos,fieldleng);
+//               if (value == id_eingabe)
+//              {
+//                  cout << "MLR_ID_EVENT_NR = "<< id_eingabe <<endl;
+//                  cout << fieldname << "(" << pos<< "," << fieldleng + pos -1 << ")" <<endl;
+//              }
+//               else
+              cout << "Meldung= '" << value <<"'" << " ," << fieldname << "(" << pos<< "," << fieldleng + pos -1<< ")" <<endl;
+              field= result.getnext();
+              pos = fieldleng+pos;
+          }
+        } catch (out_of_range&) {
+            cout << "ID nicht vorhanden" << endl;
+            return -4;
+        }
+    return 0;
 }
 
 

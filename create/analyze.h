@@ -23,14 +23,16 @@
 #include <string>
 
 using namespace std;
-
 class analyze {
 
 public:   
-analyze();
+analyze(const alleformate& formateS);
 void readmeldung(string meld);
-void einlesen(const string Meldung, int len); 
+int analysiere(const string& Meldung);
+void einlesen(const string Meldung, int len);
+
 private:
+    alleformate Sammlung;
 };
 
 #endif /* ANALYZE_H */

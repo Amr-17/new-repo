@@ -13,7 +13,6 @@
 #ifndef ALLEFORMATE_H
 #define ALLEFORMATE_H
 
-#include "analyze.h"
 #include "Formatc.h"
 #include <vector>
 #include <map>
@@ -22,15 +21,15 @@
 #include <iosfwd>
 #include <string>
 using namespace std;
-/*  Die Klasse alle_formate dient für das Hinzufügen alle Formate von den allen Events */
-class alle_formate {
+/*  Die Klasse alle_formate dient dem Hinzufügen bzw. der Verwaltung aller Formate von MLR-Events */
+class alleformate {
 public:
     
-    alle_formate();
-    //typedef pair <string, Format> alle_pair;
-    typedef pair <string, int> T_pair;
+    //alleformate();
+    typedef pair<string, Format> ID_pair;
     void add(Format& my_form);
 
+    /* Liefert Format des MLR-Events mit der gegebenen IDs aus interner Verwaltung*/
     inline Format get(string ID) {
         return mpp.at(ID);
     }
@@ -39,9 +38,6 @@ private:
     map<string, Format> mpp;
     string name;
     string event_id;
-    vector<T_pair> Feldliste;
-    
-
 };
 #endif /* ALLEFORMATE_H */
 

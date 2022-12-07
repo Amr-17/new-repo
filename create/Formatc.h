@@ -28,24 +28,29 @@ public:
     typedef pair <string, int> T_pair;
     char del = ' ';
     Format(const string s);
+    T_pair getnext();
     void read(string fstr);
     void readname(string fstr);
     int LiesLaenge(string wort);
     string Liesname(string name);
-    void maping(string Feld, int Laenge);
+    //void maping(string Feld, int Laenge);
     void show();
     string getID();
-    
+    T_pair empty;
+    inline void reset() {
+        position = 0;
+    }
 private:
+    int position;
     size_t start;
     size_t end;
     string name;
     string event_id;
     vector<T_pair> Feldliste;
     int split(string const &str);
-    multimap<string, int> mp;
-    
-    
+    //multimap<string, int> mp;
+
+
 
 
 };

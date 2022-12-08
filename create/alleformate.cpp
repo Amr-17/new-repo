@@ -34,8 +34,6 @@
 
  /* show Funktion zu der Ausgabe der Event_name und (Feldname, Feldlaenge) anhand der T_Pair "typdef" */
 void alleformate::show_alle() {
-//    cout << "Event_name: " + name << endl;
-//    cout << "Event_nummer: " + event_id << endl;
     for (auto itr = mpp.begin(); itr != mpp.end(); ++itr) {
         ID_pair pp = *itr;
        // cout << "Event-ID = " << pp.first << ", Format = "; 

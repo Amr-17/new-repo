@@ -38,6 +38,7 @@ analyze::analyze(const alleformate& formateS) // Konstuktor der Kalsse alle_form
 //    }
 //    
 //}
+/* analysiert die Meldung und gibt die Evente und deren Positionen wieder*/
 int analyze::analysiere(const string& Meldung)
 {
     int start = 1;
@@ -47,7 +48,7 @@ int analyze::analysiere(const string& Meldung)
     string ME;
     while (!ss.eof()) {
         getline(ss, ME);
-        cout << ME << endl;
+        cout << "Die Meldung = "<< ME << endl;
     }
     string id_eingabe = ME.substr(0,4);
     int pos = 0;
@@ -62,13 +63,7 @@ int analyze::analysiere(const string& Meldung)
               fieldname= field.first;
               fieldleng =field.second;
               value = ME.substr(pos,fieldleng);
-//               if (value == id_eingabe)
-//              {
-//                  cout << "MLR_ID_EVENT_NR = "<< id_eingabe <<endl;
-//                  cout << fieldname << "(" << pos<< "," << fieldleng + pos -1 << ")" <<endl;
-//              }
-//               else
-              cout << "Meldung= '" << value <<"'" << " ," << fieldname << "(" << pos<< "," << fieldleng + pos -1<< ")" <<endl;
+              cout << fieldname << "(" << pos<< "," << fieldleng + pos -1<< ") = '"<< value <<"'" <<endl;
               field= result.getnext();
               pos = fieldleng+pos;
           }

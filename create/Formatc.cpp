@@ -48,19 +48,13 @@ void Format::readname(string Eventformat) {
         start = Eventformat.find('"') + 1;
     }
 }
+/* Gibt die Feldliste alle Feldlistenelementen wieder in dem die position jedes mal erhöht sich um 1 */
 Format::T_pair Format::getnext()
 {
     if (position > Feldliste.size())
         return empty;
     return Feldliste[position++];
 }
-/* Mape mittels map */
-//inline void Format::maping(string Feld, int Laenge) {
-//    mp.insert(T_pair(Feld, Laenge));
-//    // for (auto itr = mp.begin(); itr != mp.end(); ++itr) {
-//    // cout << "Feldname, Feldlaenge = " << itr->first << "," << itr->second << endl;
-//    //}
-//}
 
 /* Split Funktion, die ein Feldlänge und Feldname liest und in einem Vektor "Feldliste" speichert, 
  * so dass die Reihenfolge vorhanden bleibt */
@@ -73,17 +67,13 @@ int Format::split(string const &str) {
     token = str.substr(start, end - start);
     // Vor der Länge könnten mehrere leerzeichen stehen //
     end = str.find_first_not_of(del, end);
-    //cout << "end = " << end << endl;
     int len = 0;
     string lenghthstr = str.substr(end, str.size() - end);
-    //cout << "lengthstr = " << lenghthstr << endl;
     len = LiesLaenge(lenghthstr);
     if (len < 0) {
         return -2;
     }
     end = str.find_first_not_of(del, end);
-    //cout << "len = " << len << endl;
-    //cout << "end = " << end << endl;
     T_pair pp(token, len);
     Feldliste.push_back(pp);
     start = end;

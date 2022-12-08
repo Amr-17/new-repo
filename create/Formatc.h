@@ -33,12 +33,11 @@ public:
     void readname(string fstr);
     int LiesLaenge(string wort);
     string Liesname(string name);
-    //void maping(string Feld, int Laenge);
     void show();
     string getID();
     T_pair empty;
     inline void reset() {
-        position = 0;
+    
     }
 private:
     int position;
@@ -48,10 +47,6 @@ private:
     string event_id;
     vector<T_pair> Feldliste;
     int split(string const &str);
-    //multimap<string, int> mp;
-
-
-
 
 };
 

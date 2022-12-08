@@ -28,10 +28,8 @@ using std::endl;
 
 int main(int argc, char* argv[]) {
     ifstream datei1;
-    
     datei1.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungen.txt");
     ///////////
-
     alleformate alle;
     string zeile;
     ifstream datei;
@@ -42,20 +40,18 @@ int main(int argc, char* argv[]) {
         alle.add(Code);
         //Code.show();
     }
+    string id_eingabe("A003");
+    try {
+        Format result(alle.get(id_eingabe));
+        //  result.show();
+    } catch (out_of_range&) {
+        cout << "ID nicht vorhanden" << endl;
+        return -3;
+    }
+        datei.close();
 
-        string id_eingabe("A003");
-        try {
-    
-            Format result(alle.get(id_eingabe));
-            result.show();
-        } catch (out_of_range&) {
-            cout << "ID nicht vorhanden" << endl;
-            return -3;
-        }
-        //alle.show_alle();
-        analyze newcode(alle);
-        
-        
+    //  alle.show_alle();
+    analyze newcode(alle);
     if (datei1.is_open()) {
         for (int i = 0; !datei1.eof(); i++) {
             getline(datei1, zeile);
@@ -64,5 +60,7 @@ int main(int argc, char* argv[]) {
     } else {
         cout << "Datei kann nicht geöffnet werden" << endl;
     }
+
+    datei1.close();
     return 0;
 }

@@ -36,8 +36,6 @@ public:
     void show_alle();
 private:
     map<string, Format> mpp;
-    string name;
-    string event_id;
 };
 #endif /* ALLEFORMATE_H */
 

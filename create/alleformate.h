@@ -21,21 +21,23 @@
 #include <iosfwd>
 #include <string>
 using namespace std;
+
 /*  Die Klasse alle_formate dient dem Hinzufügen bzw. der Verwaltung aller Formate von MLR-Events */
 class alleformate {
 public:
-    
+
     //alleformate();
     typedef pair<string, Format> ID_pair;
     void add(Format& my_form);
 
     /* Liefert Format des MLR-Events mit der gegebenen IDs aus interner Verwaltung*/
     inline Format get(string ID) {
-        return mpp.at(ID);
+        return alle.at(ID);
     }
     void show_alle();
+    int Textdateieinlesen(string dateipfad);
 private:
-    map<string, Format> mpp;
+    map<string, Format> alle;
 };
 #endif /* ALLEFORMATE_H */
 

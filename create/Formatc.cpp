@@ -20,7 +20,7 @@ using namespace std;
 
 /* Konstruktor der Klasse Format zum Dateieneinlesen und in einem gezielten Format zum Wiedergeben */
 Format::Format(const string s) {
-    empty = make_pair("",0);
+    empty = make_pair("", 0);
     start = 0;
     end = 0;
     position = 0;
@@ -33,10 +33,9 @@ Format::Format(const string s) {
 }
 
 /* Die Funktions für Wiedergabe von der Event-ID*/
-  string Format::getID() {
-        return this->event_id;
-    }
-    
+string Format::getID() {
+    return this->event_id;
+}
 
 /* Die Funktions für Wiedergabe von der Name des Format */
 void Format::readname(string Eventformat) {
@@ -48,10 +47,12 @@ void Format::readname(string Eventformat) {
         start = Eventformat.find('"') + 1;
     }
 }
+
 /* Gibt die Feldliste alle Feldlistenelementen wieder in dem die position jedes mal erhöht sich um 1 */
-Format::T_pair Format::getnext()
-{
-    if (position > Feldliste.size())
+Format::T_pair Format::getnext() {
+    // cout << "Feldliste = " << Feldliste.size() << endl;
+    // cout << "position = " << position << endl;
+    if (position >= Feldliste.size())
         return empty;
     return Feldliste[position++];
 }

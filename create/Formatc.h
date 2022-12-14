@@ -36,8 +36,9 @@ public:
     void show();
     string getID();
     T_pair empty;
+
     inline void reset() {
-    
+
     }
 private:
     int position;

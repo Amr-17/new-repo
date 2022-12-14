@@ -25,21 +25,35 @@
 //alleformate::alleformate() {
 //    
 //}
-/* add-Funktion, die für die Setzung von den Strings(my_id) und die Formate(my_form) in Map dient */
-  void alleformate::add(Format& my_form) {
-      string my_id = my_form.getID();
-      // alle_pair pa(my_id, my_form);
-        mpp.insert(make_pair(my_id,my_form));
-    }
 
- /* show Funktion zu der Ausgabe der Event_name und (Feldname, Feldlaenge) anhand der T_Pair "typdef" */
+/* Add-Funktion, die für die Setzung von den Strings(my_id) und die Formate(my_form) in Map dient */
+void alleformate::add(Format& my_form) {
+    string my_id = my_form.getID();
+    alle.insert(make_pair(my_id, my_form));
+}
+
+/* show Funktion zu der Ausgabe der Event_name und (Feldname, Feldlaenge) anhand der T_Pair "typdef" */
 void alleformate::show_alle() {
-    for (auto itr = mpp.begin(); itr != mpp.end(); ++itr) {
+    for (auto itr = alle.begin(); itr != alle.end(); ++itr) {
         ID_pair pp = *itr;
-       // cout << "Event-ID = " << pp.first << ", Format = "; 
+        // cout << "Event-ID = " << pp.first << ", Format = "; 
         pp.second.show();
     }
 }
 
-
- 
+int alleformate::Textdateieinlesen(string dateipfad) {
+    string zeile;
+    ifstream datei;
+    
+    datei.open(dateipfad);
+    if (!datei.is_open()) {
+        cout << "Datei kann nicht geöffnet werden :" << dateipfad << endl; return -3;
+    }
+    for (int i = 0; !datei.eof(); i++) {
+        getline(datei, zeile);
+        Format Code(zeile);
+        add(Code);
+        //Code.show();
+   }
+    datei.close();
+}

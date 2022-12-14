@@ -38,39 +38,40 @@ analyze::analyze(const alleformate& formateS) // Konstuktor der Kalsse alle_form
 //    }
 //    
 //}
+
 /* analysiert die Meldung und gibt die Evente und deren Positionen wieder*/
-int analyze::analysiere(const string& Meldung)
-{
+int analyze::analysiere(const string& Meldung) {
     int start = 1;
-    if (Meldung.length()==0 || Meldung.find('=',0) <= 0 || start <= 0 ) return -5;
-    int end = Meldung.length()-1;
-    stringstream ss(Meldung.substr(start, end-start));
+    if (Meldung.length() == 0 || Meldung.find('=', 0) <= 0 || start <= 0) return -5;
+    int end = Meldung.length() - 1;
+    stringstream ss(Meldung.substr(start, end - start));
     string ME;
     while (!ss.eof()) {
         getline(ss, ME);
-        cout << "Die Meldung = "<< ME << endl;
-    }
-    string id_eingabe = ME.substr(0,4);
-    int pos = 0;
-    string value;
-    try {
-        string fieldname;
-        int fieldleng;
-    
+        cout << "Die Meldung = " << ME << endl;
+
+        string id_eingabe = ME.substr(0, 4);
+        int pos = 0;
+        string value;
+        try {
+            string fieldname;
+            int fieldleng;
+
             Format result(Sammlung.get(id_eingabe));
             Format::T_pair field = result.getnext();
-          while (field != result.empty && pos < ME.length()) {
-              fieldname= field.first;
-              fieldleng =field.second;
-              value = ME.substr(pos,fieldleng);
-              cout << fieldname << "(" << pos<< "," << fieldleng + pos -1<< ") = '"<< value <<"'" <<endl;
-              field= result.getnext();
-              pos = fieldleng+pos;
-          }
+            while (field != result.empty && pos < ME.length()) {
+                fieldname = field.first;
+                fieldleng = field.second;
+                value = ME.substr(pos, fieldleng);
+                cout << fieldname << "(" << pos << "," << fieldleng + pos - 1 << ") = '" << value << "'" << endl;
+                field = result.getnext();
+                pos = fieldleng + pos;
+            }
         } catch (out_of_range&) {
-            cout << "ID nicht vorhanden" << endl;
+            cout << "Formatbeschreibung für Event-ID "<< id_eingabe <<" nicht vorhanden." << endl;
             return -4;
         }
+    }
     return 0;
 }
 

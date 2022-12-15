@@ -41,19 +41,38 @@ void alleformate::show_alle() {
     }
 }
 
-int alleformate::Textdateieinlesen(string dateipfad) {
+/* show Funktion zu der Ausgabe der Event_name und (Feldname, Feldlaenge) anhand der T_Pair "typdef" */
+
+int alleformate::Format_datei_einlesen(string dateipfad) {
     string zeile;
     ifstream datei;
     
     datei.open(dateipfad);
     if (!datei.is_open()) {
-        cout << "Datei kann nicht geöffnet werden :" << dateipfad << endl; return -3;
+        cout << "Datei kann nicht geöffnet werden :" << dateipfad << endl; return -6;
     }
     for (int i = 0; !datei.eof(); i++) {
         getline(datei, zeile);
         Format Code(zeile);
         add(Code);
         //Code.show();
+   }
+    datei.close();
+}
+
+int alleformate::Meldung_datei_einlesen(string dateipfad) {
+    string zeile;
+    ifstream datei;
+       alleformate all_formats;
+       analyze newcode(all_formats);
+
+    datei.open(dateipfad);
+    if (!datei.is_open()) {
+        cout << "Datei kann nicht geöffnet werden :" << dateipfad << endl; return -5;
+    }
+    for (int i = 0; !datei.eof(); i++) {
+        getline(datei, zeile);
+            newcode.analysiere(zeile);
    }
     datei.close();
 }

@@ -35,7 +35,8 @@ public:
         return alle.at(ID);
     }
     void show_alle();
-    int Textdateieinlesen(string dateipfad);
+    int Format_datei_einlesen(string dateipfad);
+    int Meldung_datei_einlesen(string dateipfad);
 private:
     map<string, Format> alle;
 };

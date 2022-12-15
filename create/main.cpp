@@ -27,21 +27,42 @@ using std::cout;
 using std::endl;
 
 int main(int argc, char* argv[]) {
-    
-   string Foramt_file("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
-   alleformate all_formats;
-   all_formats.Format_datei_einlesen(Foramt_file);
+   string Foramtfile("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\NetBeansProjects\\CppApplication_2\\Formate einiger Event.txt");
+   alleformate alle_format;
+   alle_format.Format_datei_einlesen(Foramtfile);
+   
     ///////////
    string Meldung_file("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungen.txt");
-   all_formats.Meldung_datei_einlesen(Meldung_file); 
+   alle_format.Meldung_datei_einlesen(Meldung_file); 
    
-//        string id_eingabe("1101");
-//        try {
-//            Format result(alle_format.get(id_eingabe));
-//              result.show();
-//        } catch (out_of_range&) {
-//            cout << "ID nicht vorhanden" << endl;
-//            return -3;
-//        }
+   string zeile;
+   ifstream datei1;
+   datei1.open("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungen.txt");
+    ///////////
+    
+   
+
+    //    string id_eingabe("1101");
+    //    try {
+    //        Format result(alle.get(id_eingabe));
+    //        //  result.show();
+    //    } catch (out_of_range&) {
+    //        cout << "ID nicht vorhanden" << endl;
+    //        return -3;
+    //    }
+    
+
+    //  alle.show_alle();
+   
+    analyze newcode(alle_format);
+    if (datei1.is_open()) {
+        for (int i = 0; !datei1.eof(); i++) {
+            getline(datei1, zeile);
+            newcode.analysiere(zeile);
+        }
+    } else {
+        cout << "Datei kann nicht geöffnet werden" << endl;
+    }
+    datei1.close();
     return 0;
 }

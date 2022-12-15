@@ -49,16 +49,16 @@ int analyze::analysiere(const string& Meldung) {
     while (!ss.eof()) {
         getline(ss, ME);
         cout << "Die Meldung = " << ME << endl;
-
         string id_eingabe = ME.substr(0, 4);
         int pos = 0;
         string value;
         try {
             string fieldname;
             int fieldleng;
-
             Format result(Sammlung.get(id_eingabe));
             Format::T_pair field = result.getnext();
+                        cout << "hey2-" << id_eingabe << endl;
+
             while (field != result.empty && pos < ME.length()) {
                 fieldname = field.first;
                 fieldleng = field.second;

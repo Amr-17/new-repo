@@ -50,8 +50,6 @@ void Format::readname(string Eventformat) {
 
 /* Gibt die Feldliste alle Feldlistenelementen wieder in dem die position jedes mal erhöht sich um 1 */
 Format::T_pair Format::getnext() {
-    // cout << "Feldliste = " << Feldliste.size() << endl;
-    // cout << "position = " << position << endl;
     if (position >= Feldliste.size())
         return empty;
     return Feldliste[position++];

@@ -41,7 +41,7 @@ void alleformate::show_alle() {
     }
 }
 
-/* show Funktion zu der Ausgabe der Event_name und (Feldname, Feldlaenge) anhand der T_Pair "typdef" */
+/* show Funk */
 
 int alleformate::Format_datei_einlesen(string dateipfad) {
     string zeile;
@@ -49,7 +49,7 @@ int alleformate::Format_datei_einlesen(string dateipfad) {
     
     datei.open(dateipfad);
     if (!datei.is_open()) {
-        cout << "Datei kann nicht geöffnet werden :" << dateipfad << endl; return -6;
+        cout << "Datei kann nicht geöffnet werden :" << dateipfad << endl; return -3;
     }
     for (int i = 0; !datei.eof(); i++) {
         getline(datei, zeile);
@@ -63,8 +63,8 @@ int alleformate::Format_datei_einlesen(string dateipfad) {
 int alleformate::Meldung_datei_einlesen(string dateipfad) {
     string zeile;
     ifstream datei;
-       alleformate all_formats;
-       analyze newcode(all_formats);
+       alleformate alle_format;
+       analyze newcode(alle_format);
 
     datei.open(dateipfad);
     if (!datei.is_open()) {

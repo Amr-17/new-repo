@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
    
     ///////////
    string Meldung_file("C:\\Users\\aghanoum\\OneDrive - DXC Production\\Documents\\Meldungen.txt");
-   alle_format.Meldung_datei_einlesen(Meldung_file); 
+   //alle_format.Meldung_datei_einlesen(Meldung_file); 
    
    string zeile;
    ifstream datei1;

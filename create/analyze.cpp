@@ -55,9 +55,10 @@ int analyze::analysiere(const string& Meldung) {
         try {
             string fieldname;
             int fieldleng;
+            //  cout << "zeige hier" << id_eingabe << endl;
             Format result(Sammlung.get(id_eingabe));
             Format::T_pair field = result.getnext();
-                        cout << "hey2-" << id_eingabe << endl;
+            //  cout << "zeige hier" << id_eingabe << endl;
 
             while (field != result.empty && pos < ME.length()) {
                 fieldname = field.first;
@@ -65,10 +66,19 @@ int analyze::analysiere(const string& Meldung) {
                 value = ME.substr(pos, fieldleng);
                 cout << fieldname << "(" << pos << "," << fieldleng + pos - 1 << ") = '" << value << "'" << endl;
                 field = result.getnext();
+                //cout << "zeige hier-2" << id_eingabe << endl;
                 pos = fieldleng + pos;
+                if  (ME.length() < pos){
+                    cout << "Achtung !! Es gibt noch Formate in der Meldung mit der Event-ID "<< id_eingabe <<" !! "<<endl;}
+                if (ME.length()==pos){
+                    cout << "Die Meldung ist fertig :)"<<endl;}
+
             }
+                            if(ME.length() > pos){
+                        cout << "Achtung !! Die Meldung mit der Event-ID "<< id_eingabe <<" enthält mehr Zeichenungen als nötig!! "<<endl;
+                            }
         } catch (out_of_range&) {
-            cout << "Formatbeschreibung für Event-ID "<< id_eingabe <<" nicht vorhanden." << endl;
+            cout << "Formatbeschreibung für Event-ID " << id_eingabe << " nicht vorhanden." << endl;
             return -4;
         }
     }

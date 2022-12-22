@@ -69,13 +69,13 @@ int analyze::analysiere(const string& Meldung) {
                 //cout << "zeige hier-2" << id_eingabe << endl;
                 pos = fieldleng + pos;
                 if  (ME.length() < pos){
-                    cout << "Achtung !! Es gibt noch Formate in der Meldung mit der Event-ID "<< id_eingabe <<" !! "<<endl;}
-                if (ME.length()==pos){
+                    cout << "Achtung !! Es werden in der Meldung "<< id_eingabe <<" weitere Felder erwartet!! "<<endl;}
+                else if (ME.length()==pos){
                     cout << "Die Meldung ist fertig :)"<<endl;}
 
             }
                             if(ME.length() > pos){
-                        cout << "Achtung !! Die Meldung mit der Event-ID "<< id_eingabe <<" enthält mehr Zeichenungen als nötig!! "<<endl;
+                        cout << "Achtung !! Die Meldung "<< id_eingabe <<" enthält mehr Zeichenungen als erwartet!! "<<endl;
                             }
         } catch (out_of_range&) {
             cout << "Formatbeschreibung für Event-ID " << id_eingabe << " nicht vorhanden." << endl;
